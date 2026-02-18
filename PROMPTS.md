@@ -14,3 +14,5 @@
   write this prompt to PROMPTS.md.
 - Center the name in the center of the page and increase the font size
   by 50%.
+- Add standard spacing between the menu links, and to the bottom
+  margin.

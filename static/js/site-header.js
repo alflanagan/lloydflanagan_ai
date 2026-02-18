@@ -11,7 +11,7 @@ class SiteHeader extends LitElement {
     .header-inner {
       max-width: 960px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 0;
+      padding: 1.5rem 1rem 1rem;
     }
 
     h1 {
@@ -24,7 +24,7 @@ class SiteHeader extends LitElement {
 
     nav {
       display: flex;
-      gap: 0.25rem;
+      gap: 1rem;
     }
   `;
 
