@@ -26,3 +26,5 @@
   Include a badge for this AI model.
 - Add a link to the GitHub repository in the upper right of the
   header.
+- Add a Home link to the menu, and make the name in the header be
+  a link to the home page.
