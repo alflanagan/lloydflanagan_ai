@@ -61,7 +61,7 @@ lloydflanagan/
 
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/alflanagan/lloydflanagan_ai.git
 cd lloydflanagan
 
 # Install dependencies

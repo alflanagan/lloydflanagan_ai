@@ -24,3 +24,5 @@
   targets.
 - Add README.md document which describes the project in detail.
   Include a badge for this AI model.
+- Add a link to the GitHub repository in the upper right of the
+  header.
