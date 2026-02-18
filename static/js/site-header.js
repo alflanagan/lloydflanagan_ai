@@ -26,6 +26,25 @@ class SiteHeader extends LitElement {
       display: flex;
       gap: 1rem;
     }
+
+    nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--sl-border-radius-medium, 0.25rem);
+      color: var(--sl-color-neutral-700);
+      font-size: var(--sl-font-size-medium);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background: var(--sl-color-neutral-100);
+      color: var(--sl-color-neutral-900);
+    }
+
+    nav a.active {
+      background: var(--sl-color-primary-600, #0969da);
+      color: white;
+    }
   `;
 
   render() {
@@ -35,9 +54,10 @@ class SiteHeader extends LitElement {
       <div class="header-inner">
         <h1>A Lloyd Flanagan</h1>
         <nav>
-          <sl-button variant="${currentPath === '/about' ? 'primary' : 'text'}" href="/about">About Me</sl-button>
-          <sl-button variant="${currentPath === '/blog' ? 'primary' : 'text'}" href="/blog">Blog</sl-button>
-          <sl-button variant="${currentPath === '/education' ? 'primary' : 'text'}" href="/education">Education</sl-button>
+          <a href="/about" class="${currentPath === '/about' ? 'active' : ''}">About Me</a>
+          <a href="/blog" class="${currentPath === '/blog' ? 'active' : ''}">Blog</a>
+          <a href="/education" class="${currentPath === '/education' ? 'active' : ''}">Education</a>
+          <a href="/prompts" class="${currentPath === '/prompts' ? 'active' : ''}">Prompts</a>
         </nav>
       </div>
     `;

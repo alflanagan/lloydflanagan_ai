@@ -16,3 +16,9 @@
   by 50%.
 - Add standard spacing between the menu links, and to the bottom
   margin.
+- Add a paragraph after the Welcome message that says "This is an AI
+  experiment &mdash; all code was generated from AI (Claude 4.6)."
+- Add a new menu item "Prompts" which links to a new page that
+  displays the prompts from PROMPTS.md in an attractive layout.
+- Debug and fix the error that menu links don't link to their
+  targets.

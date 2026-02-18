@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Prompts — A Lloyd Flanagan{% endblock %}
+
+{% block content %}
+<style>
+  .prompts-intro {
+    margin-bottom: 1.5rem;
+    color: var(--sl-color-neutral-700);
+    font-size: var(--sl-font-size-medium);
+  }
+
+  .prompt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .prompt-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .prompt-card sl-badge {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .prompt-card p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--sl-color-neutral-800);
+  }
+</style>
+
+<h2>AI Prompts</h2>
+<p class="prompts-intro">
+  Every feature on this site was built from the prompts below, given to Claude AI
+  in the order shown.
+</p>
+
+<div class="prompt-list">
+  {% for prompt in prompts %}
+  <sl-card class="prompt-card">
+    <sl-badge variant="neutral" pill>{{ loop.index }}</sl-badge>
+    <p>{{ prompt }}</p>
+  </sl-card>
+  {% endfor %}
+</div>
+{% endblock %}
