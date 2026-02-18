@@ -22,3 +22,5 @@
   displays the prompts from PROMPTS.md in an attractive layout.
 - Debug and fix the error that menu links don't link to their
   targets.
+- Add README.md document which describes the project in detail.
+  Include a badge for this AI model.
