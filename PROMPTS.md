@@ -28,3 +28,4 @@
   header.
 - Add a Home link to the menu, and make the name in the header be
   a link to the home page.
+- fix error "Could not find FastAPI app in module, try using --app"
