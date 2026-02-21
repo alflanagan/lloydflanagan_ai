@@ -40,3 +40,8 @@
   In another card, list each of the major third-party software products used
   with a short description of why they were chosen. Add this prompt to
   PROMPTS.md.
+- Add more space between the github logo and the Design link, using a shoelace
+  spacing variable. Change the color of the link to use a light shoelace accent
+  color.
+- For each software name in the second card of the design page, change the name
+  into a link to the tool's main web site.

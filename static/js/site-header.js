@@ -22,7 +22,7 @@ class SiteHeader extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.25rem;
+      gap: var(--sl-spacing-medium);
     }
 
     .github-link {
@@ -43,13 +43,13 @@ class SiteHeader extends LitElement {
 
     .design-link {
       font-size: var(--sl-font-size-small);
-      color: var(--sl-color-neutral-600);
+      color: var(--sl-color-primary-400);
       text-decoration: none;
       transition: color 0.2s;
     }
 
     .design-link:hover {
-      color: var(--sl-color-neutral-900);
+      color: var(--sl-color-primary-600);
     }
 
     h1 {
