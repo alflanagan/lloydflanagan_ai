@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     TrustedHostMiddleware,
-    allowed_hosts=["alloydflanagan.com", "www.alloydflanagan.com", "localhost", "127.0.0.1"],
+    allowed_hosts=["alloydflanagan.com", "www.alloydflanagan.com", "lloydflanagan.fly.dev", "localhost", "127.0.0.1"],
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")

@@ -33,3 +33,4 @@
   footnote: "Except for certain files related to deployment.".
 - Add a gitlab workflow to deploy to fly.io when I push to main branch.
 - Add alloydflanagan.com to the URL whitelist.
+- add lloydflanagan.fly.dev to allowed hosts
