@@ -34,3 +34,9 @@
 - Add a gitlab workflow to deploy to fly.io when I push to main branch.
 - Add alloydflanagan.com to the URL whitelist.
 - add lloydflanagan.fly.dev to allowed hosts
+- Create a new page at URL design/ with the title "Design Notes". Add a link
+  from the home page under the github logo labelled "Design". On the first card
+  on the page, write a short paragraph listing the design goals for the site.
+  In another card, list each of the major third-party software products used
+  with a short description of why they were chosen. Add this prompt to
+  PROMPTS.md.

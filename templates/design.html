@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Design Notes — A Lloyd Flanagan{% endblock %}
+
+{% block content %}
+<style>
+  .design-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .design-cards sl-card::part(base) {
+    --padding: 1.5rem;
+  }
+
+  .design-cards h2 {
+    margin: 0 0 1rem;
+    font-size: var(--sl-font-size-x-large);
+    color: var(--sl-color-neutral-900);
+  }
+
+  .design-cards p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--sl-color-neutral-800);
+  }
+
+  .tech-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tech-list li {
+    display: flex;
+    gap: 0.5rem;
+    line-height: 1.6;
+    color: var(--sl-color-neutral-800);
+  }
+
+  .tech-name {
+    font-weight: var(--sl-font-weight-semibold);
+    color: var(--sl-color-primary-700);
+    white-space: nowrap;
+  }
+</style>
+
+<h2>Design Notes</h2>
+
+<div class="design-cards">
+  <sl-card>
+    <h2 slot="header">Design Goals</h2>
+    <p>
+      This site is built around a single guiding idea: prove that a complete,
+      production-ready personal website can be created entirely through
+      natural-language prompts to an AI, with no hand-written code. Beyond that
+      experiment, the goals are simplicity and readability &mdash; a clean layout
+      that stays out of the way of the content, fast page loads using CDN-hosted
+      assets, a consistent visual language throughout via a shared component
+      library, and a responsive design that works comfortably on any screen size.
+    </p>
+  </sl-card>
+
+  <sl-card>
+    <h2 slot="header">Third-Party Software</h2>
+    <ul class="tech-list">
+      <li>
+        <span class="tech-name">FastAPI&nbsp;&mdash;</span>
+        <span>Modern Python web framework chosen for its async-native design,
+        automatic validation via Pydantic, and clean decorator-based routing.</span>
+      </li>
+      <li>
+        <span class="tech-name">Uvicorn&nbsp;&mdash;</span>
+        <span>Lightweight ASGI server that pairs naturally with FastAPI and
+        supports hot-reload during development.</span>
+      </li>
+      <li>
+        <span class="tech-name">Jinja2&nbsp;&mdash;</span>
+        <span>Templating engine integrated directly into FastAPI; allows HTML
+        pages to be composed from a shared base layout with named blocks.</span>
+      </li>
+      <li>
+        <span class="tech-name">Shoelace&nbsp;&mdash;</span>
+        <span>Web-components UI library that provides polished, accessible
+        elements (cards, badges, buttons) without locking the project into a
+        JavaScript framework.</span>
+      </li>
+      <li>
+        <span class="tech-name">Lit&nbsp;&mdash;</span>
+        <span>Minimal library used to build the custom <code>&lt;site-header&gt;</code>
+        web component; chosen because it compiles down to standard custom elements
+        with no runtime overhead beyond the small Lit core.</span>
+      </li>
+      <li>
+        <span class="tech-name">Google Fonts&nbsp;&mdash;</span>
+        <span>Supplies the <em>Playwrite New Zealand Basic</em> typeface used in
+        the site heading, loaded via CDN for zero self-hosting complexity.</span>
+      </li>
+      <li>
+        <span class="tech-name">uv&nbsp;&mdash;</span>
+        <span>Fast Python package and project manager used to install dependencies
+        and run scripts, replacing the traditional pip/virtualenv workflow.</span>
+      </li>
+      <li>
+        <span class="tech-name">Fly.io&nbsp;&mdash;</span>
+        <span>Deployment platform that hosts the containerised app globally;
+        chosen for its simple CLI, free tier, and built-in HTTPS.</span>
+      </li>
+    </ul>
+  </sl-card>
+</div>
+{% endblock %}

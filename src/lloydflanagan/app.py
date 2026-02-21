@@ -36,6 +36,11 @@ async def education(request: Request):
     return templates.TemplateResponse("education.html", {"request": request})
 
 
+@app.get("/design")
+async def design(request: Request):
+    return templates.TemplateResponse("design.html", {"request": request})
+
+
 @app.get("/prompts")
 async def prompts(request: Request):
     prompts_file = Path("PROMPTS.md")
