@@ -92,6 +92,18 @@ class SiteHeader extends LitElement {
       background: var(--sl-color-primary-600, #0969da);
       color: white;
     }
+
+    nav a sl-icon {
+      color: var(--sl-color-neutral-900);
+    }
+
+    nav a:hover sl-icon {
+      color: var(--sl-color-neutral-900);
+    }
+
+    nav a.active sl-icon {
+      color: white;
+    }
   `;
 
   render() {
@@ -107,7 +119,7 @@ class SiteHeader extends LitElement {
         </div>
         <h1><a href="/">A Lloyd Flanagan</a></h1>
         <nav>
-          <a href="/" class="${currentPath === '/' ? 'active' : ''}">Home</a>
+          <a href="/" class="${currentPath === '/' ? 'active' : ''}" title="Home" aria-label="Home"><sl-icon name="house-fill" style="font-size: 1.2em; vertical-align: middle;"></sl-icon></a>
           <a href="/about" class="${currentPath === '/about' ? 'active' : ''}">About Me</a>
           <a href="/blog" class="${currentPath === '/blog' ? 'active' : ''}">Blog</a>
           <a href="/education" class="${currentPath === '/education' ? 'active' : ''}">Education</a>

@@ -45,3 +45,5 @@
   color.
 - For each software name in the second card of the design page, change the name
   into a link to the tool's main web site.
+- Replace the label on the Home link with an icon used to signify "Home".
+- Fix color contrast problem with the home icon.
