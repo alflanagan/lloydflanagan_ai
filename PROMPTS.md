@@ -47,3 +47,6 @@
   into a link to the tool's main web site.
 - Replace the label on the Home link with an icon used to signify "Home".
 - Fix color contrast problem with the home icon.
+- Create a new component derived from sl-card which outputs an sl-card with
+  contents converted to html from an external markdown file stored in a content
+  subdirectory.
