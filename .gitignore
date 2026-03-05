@@ -16,3 +16,5 @@ wheels/
 .ruff_cache/
 .pytest_cache/
 .claude/
+# tres secret
+github_mirror_key*

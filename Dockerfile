@@ -4,9 +4,11 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app
 
-RUN python -m venv .venv
-COPY pyproject.toml ./
-RUN .venv/bin/pip install .
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+
 FROM python:3.14-slim
 WORKDIR /app
 COPY --from=builder /app/.venv .venv/

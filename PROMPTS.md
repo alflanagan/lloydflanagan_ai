@@ -50,3 +50,4 @@
 - Create a new component derived from sl-card which outputs an sl-card with
   contents converted to html from an external markdown file stored in a content
   subdirectory.
+- Correct dockerfile to use uv for python install and copy uv.lock.
