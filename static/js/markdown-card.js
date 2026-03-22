@@ -1,5 +1,4 @@
-import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-import { unsafeHTML } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+import { LitElement, html, css, unsafeHTML } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 
 class MarkdownCard extends LitElement {
   static properties = {
@@ -141,10 +140,10 @@ class MarkdownCard extends LitElement {
       }
 
       const markdown = await response.text();
-      
+
       // Dynamically import marked
       const { marked } = await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js');
-      
+
       // Convert markdown to HTML
       const html = await marked(markdown);
       this._content = html;
