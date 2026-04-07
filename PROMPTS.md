@@ -51,3 +51,6 @@
   contents converted to html from an external markdown file stored in a content
   subdirectory.
 - Correct dockerfile to use uv for python install and copy uv.lock.
+- Create a requirements document in REQUIREMENTS.md. It should include
+  an "about me" page, a professional blog, and a personal blog. Analyze
+  existing code for additional requirements.
