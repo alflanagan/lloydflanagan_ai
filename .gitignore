@@ -18,3 +18,4 @@ wheels/
 .claude/
 # tres secret
 github_mirror_key*
+.DS_Store

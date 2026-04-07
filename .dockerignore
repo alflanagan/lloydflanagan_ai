@@ -2,3 +2,8 @@
 __pycache__/
 .envrc
 .venv/
+.DS_Store
+.env.example
+.idea/
+.ruff_cache/
+*_key*
