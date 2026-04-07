@@ -1,3 +1,4 @@
+<div style="width: 768px; margin-left: 0.5rem;">
 # Requirements — alloydflanagan.com
 
 ## 1. Project Purpose
@@ -143,3 +144,4 @@ layouts.
   custom components should follow the same patterns.
 - The site should be fully functional with JavaScript enabled (web
   components require JS).
+</div>
