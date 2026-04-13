@@ -54,3 +54,8 @@
 - Create a requirements document in REQUIREMENTS.md. It should include
   an "about me" page, a professional blog, and a personal blog. Analyze
   existing code for additional requirements.
+- /root:docs scan — discover undocumented components and generate docs
+  for src/lloydflanagan/app.py, static/js/site-header.js, and
+  static/js/markdown-card.js.
+- /root:prd about-me — create a PRD for the About Me page
+  (docs/prds/about-me.md).
