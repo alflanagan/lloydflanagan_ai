@@ -19,3 +19,6 @@ wheels/
 # tres secret
 github_mirror_key*
 .DS_Store
+
+# Root framework local data
+.root/
