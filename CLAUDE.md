@@ -61,6 +61,9 @@ continuation lines (indented 3 spaces). The parsed list is passed to
   `static/js/site-header.js`.
 - Ruff is configured with rules `E`, `F`, `I`, `UP` at line length 88,
   targeting Python 3.14.
+- After editing any Python file, run `ruff check` on it. If errors are
+  found, ask the user whether ruff should correct them. If yes, run
+  `ruff check --fix` and `ruff format` on the affected files.
 - When a new prompt is used to build the site, append it to `PROMPTS.md` as
   the next numbered list item (hard-wrapped at column 80, continuation lines
   indented 3 spaces to align with the text after the number).
