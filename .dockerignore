@@ -1,9 +1,40 @@
+# Version control
 .git/
+.gitignore
+.gitlab-ci.yml
+
+# Python artefacts
 __pycache__/
-.envrc
 .venv/
-.DS_Store
+.ruff_cache/
+.mypy_cache/
+.python-version
+
+# Development tooling
+.envrc
 .env.example
 .idea/
-.ruff_cache/
+.claude/
+.playwright-mcp/
+.root/
+main.py
+Makefile
+queries/
+context.Dockerfile
+
+# Deployment / infra config (not needed inside the image)
+fly.toml
+root.config.json
+
+# Docs and project meta
+CLAUDE.md
+IMAGES.MD
+README.md
+REQUIREMENTS.md
+docs/
+
+# OS noise
+.DS_Store
+
+# Secrets
 *_key*

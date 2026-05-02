@@ -15,7 +15,11 @@ wheels/
 # Tool caches
 .ruff_cache/
 .pytest_cache/
-.claude/
 # tres secret
 github_mirror_key*
 .DS_Store
+
+# Root framework local data
+.root/
+# playwright mcp server
+.playwright-mcp/

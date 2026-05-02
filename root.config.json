@@ -1,0 +1,22 @@
+{
+  "configVersion": 2,
+  "project": {
+    "name": "lloydflanagan",
+    "docsDir": "docs",
+    "plansDir": "docs/plans",
+    "prdsDir": "docs/prds"
+  },
+  "ingest": {
+    "dbPath": ".root/rag-db",
+    "docs": ["docs"],
+    "sources": ["CLAUDE.md", "PROMPTS.md", "REQUIREMENTS.md"]
+  },
+  "docMappings": [],
+  "labelMappings": [],
+  "keywordMappings": [],
+  "codingStandards": [],
+  "validation": {
+    "lintCommand": "uv run ruff check .",
+    "testCommand": "uv run pytest"
+  }
+}

@@ -1,3 +1,17 @@
+stages:
+  - lint
+  - deploy
+
+lint:ruff:
+  stage: lint
+  image: python:3.14-slim
+  script:
+    - pip install ruff --quiet
+    - ruff check .
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH'
+
 deploy:
   stage: deploy
   image: debian:stable-slim
@@ -10,4 +24,4 @@ deploy:
     - apt-get update -qq && apt-get install -y -qq curl
     - curl -L https://fly.io/install.sh | sh
     - export PATH="$HOME/.fly/bin:$PATH"
-    - fly deploy --remote-only
+    - fly deploy --remote-only --access-token "$FLY_API_TOKEN"
