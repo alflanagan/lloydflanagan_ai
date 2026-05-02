@@ -58,3 +58,8 @@
 28. /root:prd about-me — create a PRD for the About Me page
    (docs/prds/about-me.md).
 29. reformat PROMPTS.md
+30. Create a Dockerfile: first build to copy the app to a directory, and
+   build it, second build copies the production files from first build and
+   runs a server to serve the site on localhost:8000
+31. update .dockerignore file to include anything not needed in the docker
+   image.
