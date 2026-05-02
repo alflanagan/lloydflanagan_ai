@@ -1,3 +1,17 @@
+stages:
+  - lint
+  - deploy
+
+lint:ruff:
+  stage: lint
+  image: python:3.14-slim
+  script:
+    - pip install ruff --quiet
+    - ruff check .
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH'
+
 deploy:
   stage: deploy
   image: debian:stable-slim

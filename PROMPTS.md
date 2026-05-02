@@ -63,3 +63,6 @@
    runs a server to serve the site on localhost:8000
 31. update .dockerignore file to include anything not needed in the docker
    image.
+32. set up basic gitlab workflow to run ruff with python files (except those
+   in .gitignored directories or the migrations/ directories). Have it
+   disallow merge if any file does not pass ruff.
