@@ -66,3 +66,5 @@
 32. set up basic gitlab workflow to run ruff with python files (except those
    in .gitignored directories or the migrations/ directories). Have it
    disallow merge if any file does not pass ruff.
+33. I need to update the fly.toml in the docker image to use the value of
+   the environment variable FLY_API_TOKEN as the access token
