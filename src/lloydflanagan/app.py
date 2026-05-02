@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from fastapi import FastAPI, Request
@@ -48,9 +49,10 @@ async def prompts(request: Request):
     prompt_list = []
     if prompts_file.exists():
         for line in prompts_file.read_text().splitlines():
-            if line.startswith("- "):
-                prompt_list.append(line[2:])
-            elif line.startswith("  ") and prompt_list:
+            m = re.match(r"^\d+\.\s+(.+)", line)
+            if m:
+                prompt_list.append(m.group(1))
+            elif line.startswith("   ") and prompt_list:
                 prompt_list[-1] += " " + line.strip()
     return templates.TemplateResponse(
         "prompts.html", {"request": request, "prompts": prompt_list}
