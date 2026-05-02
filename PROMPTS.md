@@ -71,3 +71,5 @@
 34. remember that when a python file is changed, you need to run 'ruff
    check' on it. If errors are found, ask me if ruff should correct them.
    If I say it should, use 'ruff check --fix' and'ruff format' on the files.
+35. the fix worked, deploy now works. However, the app needs to connect to
+   external port 8000, not 8080. implement a fix for that
