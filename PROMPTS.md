@@ -75,3 +75,9 @@
    external port 8000, not 8080. implement a fix for that
 36. analyze project and update CLAUDE.md as needed
 37. implement suggested fix for "uv run dev" alias
+38. Set this image up as background image for all pages. [parchment/grunge
+   paper texture]
+39. create a file in static/css called variables.css. implement the
+   complete palette in this as css variables with descriptive names.
+40. add a comment to @variables.css listing the sources you consulted to
+   build the palette:
