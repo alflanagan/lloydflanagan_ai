@@ -12,8 +12,11 @@ The full prompt history is tracked in `PROMPTS.md` and rendered at `/prompts`.
 ## Commands
 
 ```bash
-# Install dependencies
+# Install Python dependencies
 uv sync
+
+# Install JS dependencies
+yarn install
 
 # Run development server (with hot reload)
 uv run python main.py
@@ -55,6 +58,10 @@ component. All pages extend `base.html` and fill `{% block content %}`.
 - `markdown-card.js` — fetches a markdown file from `/content` and renders
   it inside a Shoelace `<sl-card>`. Uses `lit/dist@3/all/lit-all.min.js`
   for the `unsafeHTML` directive.
+
+Both components currently import Lit from the jsDelivr CDN. Lit is also
+declared as a local dependency in `package.json` (managed by Yarn 4),
+but the components have not yet been migrated to use the local package.
 
 Shoelace CSS custom properties (`--sl-*`) are used throughout for theming.
 

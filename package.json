@@ -1,0 +1,7 @@
+{
+  "name": "lloydflanagan",
+  "packageManager": "yarn@4.14.1",
+  "dependencies": {
+    "lit": "^3.3.2"
+  }
+}

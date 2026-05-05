@@ -1,11 +1,18 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
+// TODO: figure out a better way to incorporate these variables
+//       by reading variables.css. Maybe a pre-processor?
+const parchment_espresso = css`#3D1C08`;
+const color_surface_page = css`transparent`;
+const accent_slate_blue = css`#4A6D8C`;
+
 class SiteHeader extends LitElement {
   static styles = css`
     :host {
       display: block;
-      background: var(--sl-color-neutral-0);
-      border-bottom: 1px solid var(--sl-color-neutral-200);
+      border-bottom: 1px solid ${accent_slate_blue};
+      background: ${color_surface_page};
+      color: ${parchment_espresso};
     }
 
     .header-inner {
