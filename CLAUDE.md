@@ -28,31 +28,45 @@ uv run ruff format .
 uv run pytest
 ```
 
+Makefile shortcuts: `make run` (same as `uv run python ./main.py`),
+`make dbuild` (Docker build), `make context` (build context image).
+
 The `dev` script alias (`uv run dev`) also starts the server via `main.py`.
 
 ## Architecture
 
 **Backend:** FastAPI app in `src/lloydflanagan/app.py`. All routes render
 Jinja2 templates from `templates/`. Static files are served from `static/`
-at `/static`.
+at `/static`. The `content/` directory is also served as static files at
+`/content` (used for markdown documents fetched by the frontend).
 
 **Entry point:** `main.py` starts uvicorn pointing at
-`src.lloydflanagan.app:app`. The Dockerfile uses `fastapi run` instead
-(listening on port 8080 for Fly.io).
+`src.lloydflanagan.app:app` on port 8000. The Dockerfile uses `fastapi run`
+instead (also on port 8000 for Fly.io).
 
 **Templates:** Jinja2 with a `base.html` that includes Shoelace (CDN),
 Google Fonts (Playwrite New Zealand Basic), and the `<site-header>` web
 component. All pages extend `base.html` and fill `{% block content %}`.
 
-**Frontend:** The site header (`static/js/site-header.js`) is a Lit 3 web
-component loaded as an ES module from CDN. It highlights the active nav link
-by comparing `window.location.pathname`. Shoelace CSS custom properties
-(`--sl-*`) are used throughout for theming.
+**Frontend:** Two Lit 3 web components in `static/js/`:
+
+- `site-header.js` — the site nav bar, loaded as an ES module from CDN.
+  Highlights the active nav link by comparing `window.location.pathname`.
+- `markdown-card.js` — fetches a markdown file from `/content` and renders
+  it inside a Shoelace `<sl-card>`. Uses `lit/dist@3/all/lit-all.min.js`
+  for the `unsafeHTML` directive.
+
+Shoelace CSS custom properties (`--sl-*`) are used throughout for theming.
 
 **Prompts page:** The `/prompts` route reads `PROMPTS.md` at runtime and
 parses numbered list items (`^\d+\. `) as individual prompts, merging
 continuation lines (indented 3 spaces). The parsed list is passed to
 `prompts.html`.
+
+**Docs:** The `docs/` directory holds component documentation
+(`site-header.md`, `markdown-card.md`, `app-api.md`) plus `docs/plans/` and
+`docs/prds/` for design artifacts. `root.config.json` configures the Root
+AI tool, pointing it at `docs/` for ingestion.
 
 ## Conventions
 
@@ -70,6 +84,6 @@ continuation lines (indented 3 spaces). The parsed list is passed to
 
 ## Deployment
 
-Deployed to [Fly.io](https://fly.io) as app `lloydflanagan-ai` (primary
-region: `iad`). The Dockerfile does a two-stage build using `python:3.14` →
-`python:3.14-slim`. Internal port is 8080; HTTPS is forced.
+Deployed to [Fly.io](https://fly.io) as app `lloydflanagan` (primary
+region: `ord`). The Dockerfile does a two-stage build using `python:3.14` →
+`python:3.14-slim`. Internal port is 8000; HTTPS is forced.

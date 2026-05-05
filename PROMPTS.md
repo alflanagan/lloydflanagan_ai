@@ -73,3 +73,5 @@
    If I say it should, use 'ruff check --fix' and'ruff format' on the files.
 35. the fix worked, deploy now works. However, the app needs to connect to
    external port 8000, not 8080. implement a fix for that
+36. analyze project and update CLAUDE.md as needed
+37. implement suggested fix for "uv run dev" alias
