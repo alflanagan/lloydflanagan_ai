@@ -52,18 +52,7 @@
 <h2>Design Notes</h2>
 
 <div class="design-cards">
-  <sl-card>
-    <h2 slot="header">Design Goals</h2>
-    <p>
-      This site is built around a single guiding idea: prove that a complete,
-      production-ready personal website can be created entirely through
-      natural-language prompts to an AI, with no hand-written code. Beyond that
-      experiment, the goals are simplicity and readability &mdash; a clean layout
-      that stays out of the way of the content, fast page loads using CDN-hosted
-      assets, a consistent visual language throughout via a shared component
-      library, and a responsive design that works comfortably on any screen size.
-    </p>
-  </sl-card>
+  <markdown-card src="/content/design-goals.md"></markdown-card>
 
   <sl-card>
     <h2 slot="header">Third-Party Software</h2>
@@ -112,5 +101,6 @@
       </li>
     </ul>
   </sl-card>
+  <markdown-card src="/content/colors.md"></markdown-card>
 </div>
 {% endblock %}

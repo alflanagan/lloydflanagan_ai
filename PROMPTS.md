@@ -67,7 +67,7 @@
    in .gitignored directories or the migrations/ directories). Have it
    disallow merge if any file does not pass ruff.
 33. I need to update the fly.toml in the docker image to use the value of
-   the environment variable FLY_API_TOKEN as the access token
+   the environment variable FLY\_API\_TOKEN as the access token
 34. remember that when a python file is changed, you need to run 'ruff
    check' on it. If errors are found, ask me if ruff should correct them.
    If I say it should, use 'ruff check --fix' and'ruff format' on the files.
@@ -86,3 +86,8 @@
    CLAUDE.md as needed.
 42. write a commit message for staged changes
 43. add an appropriate favicon.ico file
+44. create a file in @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/content
+   directory named colors.md. Using markdown format, create content for the
+   file using the response you gave when i requested a new palette. include,
+   if possible, styles referencing @static/css/variables.css variables
+   instead of hard-coding values.

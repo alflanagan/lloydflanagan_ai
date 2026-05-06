@@ -3,6 +3,8 @@ import { LitElement, html, css, unsafeHTML } from 'https://cdn.jsdelivr.net/gh/l
 class MarkdownCard extends LitElement {
   static properties = {
     src: { type: String },
+    // should we make "title" a separate property? Currently using #Title in
+    // markdown content
     _content: { state: true },
     _loading: { state: true },
     _error: { state: true }
@@ -13,8 +15,10 @@ class MarkdownCard extends LitElement {
       display: block;
     }
 
-    sl-card {
-      --border-color: var(--sl-color-neutral-200);
+    .card {
+      background-color: var(--color-surface-card);
+      border-color: var(--color-border-strong);
+      /* --color-border-subtle isn't visible with the background texture */
     }
 
     .loading {
@@ -25,8 +29,9 @@ class MarkdownCard extends LitElement {
 
     .error {
       padding: 1rem;
-      color: var(--sl-color-danger-600);
-      background: var(--sl-color-danger-50);
+      color: var(--color-danger);
+      background: var(--color-danger);
+      background-opacity: 0.5;
       border-radius: var(--sl-border-radius-medium);
     }
 
@@ -95,7 +100,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content blockquote {
-      border-left: 4px solid var(--sl-color-primary-600);
+      border-left: 4px solid var(--color-border-subtle);
       padding-left: 1rem;
       margin: 1rem 0;
       color: var(--sl-color-neutral-700);
