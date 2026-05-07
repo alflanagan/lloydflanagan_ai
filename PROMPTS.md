@@ -91,3 +91,6 @@
    file using the response you gave when i requested a new palette. include,
    if possible, styles referencing @static/css/variables.css variables
    instead of hard-coding values.
+45. check the markdown file @INDEX.md for spelling, grammar errors, and
+   suggest improvements.
+46. fix all the issues
