@@ -378,6 +378,7 @@ __metadata:
   dependencies:
     lit: "npm:^3.3.2"
     marked: "npm:^18.0.3"
+    prettier: "npm:^3.8.3"
     shoelace: "npm:^0.1.1"
   languageName: unknown
   linkType: soft
@@ -476,6 +477,15 @@ __metadata:
   version: 0.0.4
   resolution: "open@npm:0.0.4"
   checksum: 10c0/bf69c035e6c7dc5bb33a8f098cbe72e4c9f2aeab9df31c166403a4ff45277e2d7b18de87b9a390977e6c77e03013b578748d450596c14a50e4f97a8792673c52
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.8.3":
+  version: 3.8.3
+  resolution: "prettier@npm:3.8.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10c0/754816fd7593eb80f6376d7476d463e832c38a12f32775a82683adb6e35b772b1f484d65f19401507b983a8c8a7cd5a4a9f12006bd56491e8f35503473f77473
   languageName: node
   linkType: hard
 

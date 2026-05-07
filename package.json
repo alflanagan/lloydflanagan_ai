@@ -5,5 +5,8 @@
     "lit": "^3.3.2",
     "marked": "^18.0.3",
     "shoelace": "^0.1.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
   }
 }
