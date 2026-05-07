@@ -43,6 +43,7 @@ class MarkdownCard extends LitElement {
       line-height: 1.6;
   color: var(--color-text-primary);
   background: var(--color-surface-card-solid);
+  padding: var(--sl-spacing-medium);
     }
 
     .content h1,

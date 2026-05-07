@@ -5,118 +5,122 @@ import {
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js'
 
 class SiteHeader extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      border-bottom: 1px solid var(--accent-slate-blue);
-      background: var(--color-surface-page);
-      color: var(--color-parchment-espresso);
-    }
+  /* note comment blocks before string literals are a hint to prettier */
+  static styles = /* css */ css`
+:host {
+  display: block;
+  border-bottom: 1px solid var(--accent-slate-blue);
+  background: var(--color-surface-page);
+  color: var(--color-parchment-espresso);
+}
 
-    .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: var(--sl-spacing-large) var(--sl-spacing-medium)
-        var(--sl-spacing-medium);
-      position: relative;
-    }
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--sl-spacing-large) var(--sl-spacing-medium)
+    var(--sl-spacing-medium);
+  position: relative;
+}
 
-    .header-right {
-      position: absolute;
-      top: 1.5rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--sl-spacing-medium);
-    }
+.header-right {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sl-spacing-medium);
+}
 
-    .github-link {
-      color: var(--color-link);
-      transition: color 0.2s;
-    }
+.header-right a.active {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-    .github-link:hover {
-      color: var(--color-link-hover);
-    }
+.github-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
 
-    .github-link svg {
-      width: 28px;
-      height: 28px;
-      fill: currentColor;
-      display: block;
-    }
+.github-link svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  display: block;
+}
 
-    .design-link {
-      font-size: var(--sl-font-size-small);
-      color: var(--color-link);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+.gitlab-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
 
-    .design-link:hover {
-      color: var(--color-link-hover);
-    }
+.design-link {
+  font-size: var(--sl-font-size-medium);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
 
-    h1 {
-      margin: 0 0 1rem;
-      font-size: calc(var(--sl-font-size-2x-large) * 1.5);
-      font-family: 'Playwrite New Zealand Basic', cursive;
-      color: var(--color-text-primary);
-      text-align: center;
-    }
+h1 {
+  margin: 0 0 1rem;
+  font-size: calc(var(--sl-font-size-2x-large) * 1.5);
+  font-family: 'Playwrite New Zealand Basic', cursive;
+  color: var(--color-text-primary);
+  text-align: center;
+}
 
-    h1 a {
-      color: inherit;
-      text-decoration: none;
-    }
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    h1 a:hover {
-      opacity: 0.8;
-    }
+h1 a:hover {
+  opacity: 0.8;
+}
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
+nav {
+  display: flex;
+  gap: 1rem;
+}
 
-    nav a {
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: var(--sl-border-radius-medium, 0.25rem);
-      color: var(--color-link);
-      font-size: var(--sl-font-size-medium);
-      transition:
-        background 0.2s,
-        color 0.2s;
-    }
+nav a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--sl-border-radius-medium, 0.25rem);
+  color: var(--color-link);
+  font-size: var(--sl-font-size-large);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
 
-    nav a:hover {
-      color: var(--color-link-hover);
-    }
+nav a:hover {
+  color: var(--color-link-hover);
+}
 
-    nav a.active {
-      background: var(--color-surface-card-solid);
-      color: white;
-    }
+nav a.active {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-    nav a sl-icon {
-      color: var(--parchment-lightest);
-    }
+nav a sl-icon {
+  color: var(--parchment-lightest);
+}
 
-    nav a:hover sl-icon {
-      color: var(--color-surface-card-solid);
-    }
+nav a:hover sl-icon {
+  color: var(--color-surface-card-solid);
+}
 
-    nav a.active sl-icon {
-      color: white;
-    }
+nav a.active sl-icon {
+  color: white;
+}
   `
 
   render() {
     const currentPath = window.location.pathname
 
-    return html`
+    return /* html */ html`
       <div class="header-inner">
         <div class="header-right">
           <a
@@ -136,10 +140,40 @@ class SiteHeader extends LitElement {
             target="_blank"
             rel="noopener"
             title="View on Gitlab">
-            <svg src="https://docs.gitlab.com/gitlab-logo-footer.svg"></svg>
-            <span>View on Gitlab</span>
+            <span aria-hidden="true" data-testid="brand-header-default-logo">
+              <svg
+                aria-hidden="true"
+                role="img"
+                class="tanuki-logo"
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  class="tanuki-shape tanuki"
+                  d="m24.507 9.5-.034-.09L21.082.562a.896.896 0 0 0-1.694.091l-2.29 7.01H7.825L5.535.653a.898.898 0 0 0-1.694-.09L.451 9.411.416 9.5a6.297 6.297 0 0 0 2.09 7.278l.012.01.03.022 5.16 3.867 2.56 1.935 1.554 1.176a1.051 1.051 0 0 0 1.268 0l1.555-1.176 2.56-1.935 5.197-3.89.014-.01A6.297 6.297 0 0 0 24.507 9.5Z"
+                  fill="#E24329"></path>
+                <path
+                  class="tanuki-shape right-cheek"
+                  d="m24.507 9.5-.034-.09a11.44 11.44 0 0 0-4.56 2.051l-7.447 5.632 4.742 3.584 5.197-3.89.014-.01A6.297 6.297 0 0 0 24.507 9.5Z"
+                  fill="#FC6D26"></path>
+                <path
+                  class="tanuki-shape chin"
+                  d="m7.707 20.677 2.56 1.935 1.555 1.176a1.051 1.051 0 0 0 1.268 0l1.555-1.176 2.56-1.935-4.743-3.584-4.755 3.584Z"
+                  fill="#FCA326"></path>
+                <path
+                  class="tanuki-shape left-cheek"
+                  d="M5.01 11.461a11.43 11.43 0 0 0-4.56-2.05L.416 9.5a6.297 6.297 0 0 0 2.09 7.278l.012.01.03.022 5.16 3.867 4.745-3.584-7.444-5.632Z"
+                  fill="#FC6D26"></path>
+              </svg>
+            </span>
           </a>
-          <a class="design-link" href="/design">Design</a>
+          <a class="design-link ${currentPath === '/design' ? 'active' : ''}"
+             href="/design"
+             ${currentPath === '/design' ? '[aria-disabled="true"]' : ''}>
+          Design
+          </a>
         </div>
         <h1><a href="/">A Lloyd Flanagan</a></h1>
         <nav>
@@ -147,25 +181,27 @@ class SiteHeader extends LitElement {
             href="/"
             class="${currentPath === '/' ? 'active' : ''}"
             title="Home"
-            aria-label="Home">
-            <sl-icon
-              name="house-fill"
-              style="font-size: 1.2em; vertical-align: middle;"></sl-icon>
+            aria-label="Home"
+            ${currentPath === '/' ? '[aria-disabled="true"]' : ''}">
+            Home
           </a>
-          <a href="/about" class="${currentPath === '/about' ? 'active' : ''}">
+          <a
+            href="/about"
+            class="${currentPath === '/about' ? 'active' : ''}"
+            ${currentPath === '/about' ? '[aria-disabled="true"]' : ''}>
             About Me
           </a>
-          <a href="/blog" class="${currentPath === '/blog' ? 'active' : ''}">
+          <a href="/blog" class="${currentPath === '/blog' ? 'active' : ''}" ${currentPath === '/blog' ? '[aria-disabled="true"]' : ''}>
             Blog
           </a>
           <a
             href="/education"
-            class="${currentPath === '/education' ? 'active' : ''}">
+            class="${currentPath === '/education' ? 'active' : ''}" ${currentPath === '/education' ? '[aria-disabled="true"]' : ''}>
             Education
           </a>
           <a
             href="/prompts"
-            class="${currentPath === '/prompts' ? 'active' : ''}">
+            class="${currentPath === '/prompts' ? 'active' : ''}" ${currentPath === '/prompts' ? '[aria-disabled="true"]' : ''}>
             Prompts
           </a>
         </nav>
