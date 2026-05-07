@@ -16,7 +16,11 @@ class MarkdownCard extends LitElement {
     }
 
     .card {
-      background-color: var(--color-surface-card);
+  background-color: var(--color-surface-card);
+  background-opacity: 100%;
+      padding: var(--sl-spacing-large);
+      border-radius: var(--sl-border-radius-medium);
+      border-width: 1px;
       border-color: var(--color-border-strong);
       /* --color-border-subtle isn't visible with the background texture */
     }
@@ -37,7 +41,8 @@ class MarkdownCard extends LitElement {
 
     .content {
       line-height: 1.6;
-      color: var(--sl-color-neutral-800);
+  color: var(--color-text-primary);
+  background: var(--color-surface-card-solid);
     }
 
     .content h1,
@@ -48,7 +53,6 @@ class MarkdownCard extends LitElement {
     .content h6 {
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      color: var(--sl-color-neutral-900);
       font-weight: 600;
     }
 
@@ -79,7 +83,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content code {
-      background: var(--sl-color-neutral-100);
+      background: var(--color-surface-muted);
       padding: 0.2rem 0.4rem;
       border-radius: var(--sl-border-radius-small);
       font-family: monospace;
@@ -87,7 +91,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content pre {
-      background: var(--sl-color-neutral-100);
+      background: var(--color-surface-muted);
       padding: 1rem;
       border-radius: var(--sl-border-radius-medium);
       overflow-x: auto;
@@ -108,7 +112,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content a {
-      color: var(--sl-color-primary-600);
+      color: var(--color-text-secondary);
       text-decoration: none;
     }
 
@@ -167,7 +171,7 @@ class MarkdownCard extends LitElement {
         ${this._error ? html`<div class="error">Error: ${this._error}</div>` : ''}
         ${!this._loading && !this._error ? html`<div class="content">${unsafeHTML(this._content)}</div>` : ''}
       </sl-card>
-    `;
+    `
   }
 }
 

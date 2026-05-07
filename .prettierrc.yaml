@@ -6,6 +6,7 @@ singleQuote: true
 experimentalTernaries: true
 bracketSpacing: false
 bracketSameLine: true
+htmlWhitespaceSensitivity: "ignore"
 
 overrides:
   - files: "*.py"
