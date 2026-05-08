@@ -380,6 +380,7 @@ __metadata:
     marked: "npm:^18.0.3"
     prettier: "npm:^3.8.3"
     shoelace: "npm:^0.1.1"
+    win-fork: "npm:^1.1.1"
   languageName: unknown
   linkType: soft
 
@@ -625,5 +626,16 @@ __metadata:
   version: 1.0.0
   resolution: "win-fork@npm:1.0.0"
   checksum: 10c0/70930bbc7ae7b71ea7f0445c715fac82dd6e0f596eab8e074c300ddab9ccbeb9b64233537cacfb1081ed4ea9893bb00853f4a572e8c491a581828f5634b6056b
+  languageName: node
+  linkType: hard
+
+"win-fork@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "win-fork@npm:1.1.1"
+  bin:
+    win-fork: ./bin/win-spawn
+    win-line-endings: ./bin/win-line-endings
+    win-spawn: ./bin/win-spawn
+  checksum: 10c0/93c9f3ccb3c0928d22f25df130878043892b9a993fcc8c1acd5f7571bc6299c60441642fc27e11f1f06e05312d28b0a03a835a09fb0ed22ee6edf063124f32ca
   languageName: node
   linkType: hard

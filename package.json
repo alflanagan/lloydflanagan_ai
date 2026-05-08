@@ -4,7 +4,8 @@
   "dependencies": {
     "lit": "^3.3.2",
     "marked": "^18.0.3",
-    "shoelace": "^0.1.1"
+    "shoelace": "^0.1.1",
+    "win-fork": "^1.1.1"
   },
   "devDependencies": {
     "prettier": "^3.8.3"
