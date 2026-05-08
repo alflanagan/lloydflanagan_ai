@@ -3,57 +3,57 @@
 {% block title %}Design Notes — A Lloyd Flanagan{% endblock %}
 
 {% block content %}
-<style>
-  .design-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+  <style>
+    .design-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
-  .design-cards sl-card::part(base) {
-    --padding: 1.5rem;
-  }
+    .design-cards sl-card::part(base) {
+      --padding: 1.5rem;
+    }
 
-  .design-cards h2 {
-    margin: 0 0 1rem;
-    font-size: var(--sl-font-size-x-large);
-    color: var(--sl-color-neutral-900);
-  }
+    .design-cards h2 {
+      margin: 0 0 1rem;
+      font-size: var(--sl-font-size-x-large);
+      color: var(--sl-color-neutral-900);
+    }
 
-  .design-cards p {
-    margin: 0;
-    line-height: 1.7;
-    color: var(--sl-color-neutral-800);
-  }
+    .design-cards p {
+      margin: 0;
+      line-height: 1.7;
+      color: var(--sl-color-neutral-800);
+    }
 
-  .tech-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+    .tech-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
 
-  .tech-list li {
-    display: flex;
-    gap: 0.5rem;
-    line-height: 1.6;
-    color: var(--sl-color-neutral-800);
-  }
+    .tech-list li {
+      display: flex;
+      gap: 0.5rem;
+      line-height: 1.6;
+      color: var(--sl-color-neutral-800);
+    }
 
-  .tech-name {
-    font-weight: var(--sl-font-weight-semibold);
-    color: var(--sl-color-primary-700);
-    white-space: nowrap;
-  }
-</style>
+    .tech-name {
+      font-weight: var(--sl-font-weight-semibold);
+      color: var(--sl-color-primary-700);
+      white-space: nowrap;
+    }
+  </style>
 
-<h2>Design Notes</h2>
+  <h2>Design Notes</h2>
 
-<div class="design-cards">
-  <markdown-card src="/content/design-goals.md"></markdown-card>
-  <markdown-card src="/content/tech-list.md"></markdown-card>
-  <markdown-card src="/content/colors.md"></markdown-card>
-</div>
+  <div class="design-cards">
+    <markdown-card src="/content/design-goals.md"></markdown-card>
+    <markdown-card src="/content/tech-list.md"></markdown-card>
+    <markdown-card src="/content/colors.md"></markdown-card>
+  </div>
 {% endblock %}
