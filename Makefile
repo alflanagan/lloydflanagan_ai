@@ -1,4 +1,6 @@
-.PHONY: dbuild context run strfind filefind
+# -*- mode: makefile-gmake; mode: indent-tabs -*-
+
+.PHONY: dbuild context run strfind filefind jinja-fmt
 
 dbuild:
 	docker build . --tag=lloydflanagan-ai
@@ -9,6 +11,8 @@ context:
 run:
 	uv run python ./main.py
 
+jinja-fmt:
+	./node_modules/.bin/prettier --plugin prettier-plugin-jinja-template --write templates/*.html
 
 strfind:
 # TODO: maybe there's a cleaner way to do this
