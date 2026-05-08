@@ -34,3 +34,4 @@ github_mirror_key*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+node_modules/
