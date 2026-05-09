@@ -7,114 +7,114 @@ import {
 class SiteHeader extends LitElement {
   /* note comment blocks before string literals are a hint to prettier */
   static styles = /* css */ css`
-:host {
-  display: block;
-  border-bottom: 1px solid var(--accent-slate-blue);
-  background: var(--color-surface-page);
-  color: var(--color-parchment-espresso);
-}
+    :host {
+      display: block;
+      border-bottom: 1px solid var(--accent-slate-blue);
+      background: var(--color-surface-page);
+      color: var(--color-parchment-espresso);
+    }
 
-.header-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: var(--sl-spacing-large) var(--sl-spacing-medium)
-    var(--sl-spacing-medium);
-  position: relative;
-}
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--sl-spacing-large) var(--sl-spacing-medium)
+        var(--sl-spacing-medium);
+      position: relative;
+    }
 
-.header-right {
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sl-spacing-medium);
-}
+    .header-right {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sl-spacing-medium);
+    }
 
-.header-right a.active {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    .header-right a.active {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-.github-link {
-  color: var(--color-text-primary);
-  text-decoration: none;
-}
+    .github-link {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
 
-.github-link svg {
-  width: 28px;
-  height: 28px;
-  fill: currentColor;
-  display: block;
-}
+    .github-link svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+      display: block;
+    }
 
-.gitlab-link {
-  color: var(--color-text-primary);
-  text-decoration: none;
-}
+    .gitlab-link {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
 
-.design-link {
-  font-size: var(--sl-font-size-medium);
-  color: var(--color-text-primary);
-  text-decoration: none;
-}
+    .design-link {
+      font-size: var(--sl-font-size-medium);
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
 
-h1 {
-  margin: 0 0 1rem;
-  font-size: calc(var(--sl-font-size-2x-large) * 1.5);
-  font-family: 'Playwrite New Zealand Basic', cursive;
-  color: var(--color-text-primary);
-  text-align: center;
-}
+    h1 {
+      margin: 0 0 1rem;
+      font-size: calc(var(--sl-font-size-2x-large) * 1.5);
+      font-family: 'Playwrite New Zealand Basic', cursive;
+      color: var(--color-text-primary);
+      text-align: center;
+    }
 
-h1 a {
-  color: inherit;
-  text-decoration: none;
-}
+    h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-h1 a:hover {
-  opacity: 0.8;
-}
+    h1 a:hover {
+      opacity: 0.8;
+    }
 
-nav {
-  display: flex;
-  gap: 1rem;
-}
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
 
-nav a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--sl-border-radius-medium, 0.25rem);
-  color: var(--color-link);
-  font-size: var(--sl-font-size-large);
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
+    nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--sl-border-radius-medium, 0.25rem);
+      color: var(--color-link);
+      font-size: var(--sl-font-size-large);
+      transition:
+        background 0.2s,
+        color 0.2s;
+    }
 
-nav a:hover {
-  color: var(--color-link-hover);
-}
+    nav a:hover {
+      color: var(--color-link-hover);
+    }
 
-nav a.active {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    nav a.active {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-nav a sl-icon {
-  color: var(--parchment-lightest);
-}
+    nav a sl-icon {
+      color: var(--parchment-lightest);
+    }
 
-nav a:hover sl-icon {
-  color: var(--color-surface-card-solid);
-}
+    nav a:hover sl-icon {
+      color: var(--color-surface-card-solid);
+    }
 
-nav a.active sl-icon {
-  color: white;
-}
+    nav a.active sl-icon {
+      color: white;
+    }
   `
 
   render() {

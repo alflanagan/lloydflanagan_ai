@@ -14,6 +14,9 @@ run:
 djhtml:
 	uv run djhtml templates
 
+fmtjs:
+	yarn run prettier --write static/js/*.js
+
 strfind:
 # prints error message from Makefile. I suspect I need a shell function to prevent
 	fd . . -t f -E 'uv.lock' --show-errors -x grep -iI ${ARGS} || true

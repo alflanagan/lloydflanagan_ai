@@ -1,14 +1,19 @@
-import { LitElement, html, css, unsafeHTML } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+import {
+  LitElement,
+  html,
+  css,
+  unsafeHTML,
+} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
 class MarkdownCard extends LitElement {
   static properties = {
-    src: { type: String },
+    src: {type: String},
     // should we make "title" a separate property? Currently using #Title in
     // markdown content
-    _content: { state: true },
-    _loading: { state: true },
-    _error: { state: true }
-  };
+    _content: {state: true},
+    _loading: {state: true},
+    _error: {state: true},
+  }
 
   static styles = css`
     :host {
@@ -16,8 +21,8 @@ class MarkdownCard extends LitElement {
     }
 
     .card {
-  background-color: var(--color-surface-card);
-  background-opacity: 100%;
+      background-color: var(--color-surface-card);
+      background-opacity: 100%;
       padding: var(--sl-spacing-large);
       border-radius: var(--sl-border-radius-medium);
       border-width: 1px;
@@ -41,9 +46,9 @@ class MarkdownCard extends LitElement {
 
     .content {
       line-height: 1.6;
-  color: var(--color-text-primary);
-  background: var(--color-surface-card-solid);
-  padding: var(--sl-spacing-medium);
+      color: var(--color-text-primary);
+      background: var(--color-surface-card-solid);
+      padding: var(--sl-spacing-medium);
     }
 
     .content h1,
@@ -120,60 +125,73 @@ class MarkdownCard extends LitElement {
     .content a:hover {
       text-decoration: underline;
     }
-  `;
+  `
 
   constructor() {
-    super();
-    this._content = '';
-    this._loading = false;
-    this._error = null;
+    super()
+    this._content = ''
+    this._loading = false
+    this._error = null
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.loadMarkdown();
+    super.connectedCallback()
+    this.loadMarkdown()
   }
 
   async loadMarkdown() {
     if (!this.src) {
-      this._error = 'No src attribute provided';
-      return;
+      this._error = 'No src attribute provided'
+      return
     }
 
-    this._loading = true;
-    this._error = null;
+    this._loading = true
+    this._error = null
 
     try {
-      const response = await fetch(this.src);
+      const response = await fetch(this.src)
       if (!response.ok) {
-        throw new Error(`Failed to load ${this.src}: ${response.statusText}`);
+        throw new Error(`Failed to load ${this.src}: ${response.statusText}`)
       }
 
-      const markdown = await response.text();
+      const markdown = await response.text()
 
       // Dynamically import marked
-      const { marked } = await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js');
+      const {marked} =
+        await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js')
 
       // Convert markdown to HTML
-      const html = await marked(markdown);
-      this._content = html;
+      const html = await marked(markdown)
+      this._content = html
     } catch (error) {
-      this._error = error.message;
-      console.error('Error loading markdown:', error);
+      this._error = error.message
+      console.error('Error loading markdown:', error)
     } finally {
-      this._loading = false;
+      this._loading = false
     }
   }
 
   render() {
     return html`
       <sl-card>
-        ${this._loading ? html`<div class="loading">Loading...</div>` : ''}
-        ${this._error ? html`<div class="error">Error: ${this._error}</div>` : ''}
-        ${!this._loading && !this._error ? html`<div class="content">${unsafeHTML(this._content)}</div>` : ''}
+        ${this._loading ?
+          html`
+            <div class="loading">Loading...</div>
+          `
+        : ''}
+        ${this._error ?
+          html`
+            <div class="error">Error: ${this._error}</div>
+          `
+        : ''}
+        ${!this._loading && !this._error ?
+          html`
+            <div class="content">${unsafeHTML(this._content)}</div>
+          `
+        : ''}
       </sl-card>
     `
   }
 }
 
-customElements.define('markdown-card', MarkdownCard);
+customElements.define('markdown-card', MarkdownCard)
