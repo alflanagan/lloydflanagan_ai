@@ -1,20 +1,33 @@
-import { LitElement, html, css, unsafeHTML } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+import {
+  LitElement,
+  html,
+  css,
+  unsafeHTML,
+} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
 class MarkdownCard extends LitElement {
   static properties = {
-    src: { type: String },
-    _content: { state: true },
-    _loading: { state: true },
-    _error: { state: true }
-  };
+    src: {type: String},
+    // should we make "title" a separate property? Currently using #Title in
+    // markdown content
+    _content: {state: true},
+    _loading: {state: true},
+    _error: {state: true},
+  }
 
   static styles = css`
     :host {
       display: block;
     }
 
-    sl-card {
-      --border-color: var(--sl-color-neutral-200);
+    .card {
+      background-color: var(--color-surface-card);
+      background-opacity: 100%;
+      padding: var(--sl-spacing-large);
+      border-radius: var(--sl-border-radius-medium);
+      border-width: 1px;
+      border-color: var(--color-border-strong);
+      /* --color-border-subtle isn't visible with the background texture */
     }
 
     .loading {
@@ -25,14 +38,17 @@ class MarkdownCard extends LitElement {
 
     .error {
       padding: 1rem;
-      color: var(--sl-color-danger-600);
-      background: var(--sl-color-danger-50);
+      color: var(--color-danger);
+      background: var(--color-danger);
+      background-opacity: 0.5;
       border-radius: var(--sl-border-radius-medium);
     }
 
     .content {
       line-height: 1.6;
-      color: var(--sl-color-neutral-800);
+      color: var(--color-text-primary);
+      background: var(--color-surface-card-solid);
+      padding: var(--sl-spacing-medium);
     }
 
     .content h1,
@@ -43,7 +59,6 @@ class MarkdownCard extends LitElement {
     .content h6 {
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      color: var(--sl-color-neutral-900);
       font-weight: 600;
     }
 
@@ -74,7 +89,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content code {
-      background: var(--sl-color-neutral-100);
+      background: var(--color-surface-muted);
       padding: 0.2rem 0.4rem;
       border-radius: var(--sl-border-radius-small);
       font-family: monospace;
@@ -82,7 +97,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content pre {
-      background: var(--sl-color-neutral-100);
+      background: var(--color-surface-muted);
       padding: 1rem;
       border-radius: var(--sl-border-radius-medium);
       overflow-x: auto;
@@ -95,7 +110,7 @@ class MarkdownCard extends LitElement {
     }
 
     .content blockquote {
-      border-left: 4px solid var(--sl-color-primary-600);
+      border-left: 4px solid var(--color-border-subtle);
       padding-left: 1rem;
       margin: 1rem 0;
       color: var(--sl-color-neutral-700);
@@ -103,67 +118,80 @@ class MarkdownCard extends LitElement {
     }
 
     .content a {
-      color: var(--sl-color-primary-600);
+      color: var(--color-text-secondary);
       text-decoration: none;
     }
 
     .content a:hover {
       text-decoration: underline;
     }
-  `;
+  `
 
   constructor() {
-    super();
-    this._content = '';
-    this._loading = false;
-    this._error = null;
+    super()
+    this._content = ''
+    this._loading = false
+    this._error = null
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.loadMarkdown();
+    super.connectedCallback()
+    this.loadMarkdown()
   }
 
   async loadMarkdown() {
     if (!this.src) {
-      this._error = 'No src attribute provided';
-      return;
+      this._error = 'No src attribute provided'
+      return
     }
 
-    this._loading = true;
-    this._error = null;
+    this._loading = true
+    this._error = null
 
     try {
-      const response = await fetch(this.src);
+      const response = await fetch(this.src)
       if (!response.ok) {
-        throw new Error(`Failed to load ${this.src}: ${response.statusText}`);
+        throw new Error(`Failed to load ${this.src}: ${response.statusText}`)
       }
 
-      const markdown = await response.text();
+      const markdown = await response.text()
 
       // Dynamically import marked
-      const { marked } = await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js');
+      const {marked} =
+        await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js')
 
       // Convert markdown to HTML
-      const html = await marked(markdown);
-      this._content = html;
+      const html = await marked(markdown)
+      this._content = html
     } catch (error) {
-      this._error = error.message;
-      console.error('Error loading markdown:', error);
+      this._error = error.message
+      console.error('Error loading markdown:', error)
     } finally {
-      this._loading = false;
+      this._loading = false
     }
   }
 
   render() {
     return html`
       <sl-card>
-        ${this._loading ? html`<div class="loading">Loading...</div>` : ''}
-        ${this._error ? html`<div class="error">Error: ${this._error}</div>` : ''}
-        ${!this._loading && !this._error ? html`<div class="content">${unsafeHTML(this._content)}</div>` : ''}
+        ${this._loading ?
+          html`
+            <div class="loading">Loading...</div>
+          `
+        : ''}
+        ${this._error ?
+          html`
+            <div class="error">Error: ${this._error}</div>
+          `
+        : ''}
+        ${!this._loading && !this._error ?
+          html`
+            <div class="content">${unsafeHTML(this._content)}</div>
+          `
+        : ''}
       </sl-card>
-    `;
+    `
   }
 }
 
-customElements.define('markdown-card', MarkdownCard);
+customElements.define('markdown-card', MarkdownCard)

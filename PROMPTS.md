@@ -67,9 +67,33 @@
    in .gitignored directories or the migrations/ directories). Have it
    disallow merge if any file does not pass ruff.
 33. I need to update the fly.toml in the docker image to use the value of
-   the environment variable FLY_API_TOKEN as the access token
+   the environment variable FLY\_API\_TOKEN as the access token
 34. remember that when a python file is changed, you need to run 'ruff
    check' on it. If errors are found, ask me if ruff should correct them.
    If I say it should, use 'ruff check --fix' and'ruff format' on the files.
 35. the fix worked, deploy now works. However, the app needs to connect to
    external port 8000, not 8080. implement a fix for that
+36. analyze project and update CLAUDE.md as needed
+37. implement suggested fix for "uv run dev" alias
+38. Set this image up as background image for all pages. [parchment/grunge
+   paper texture]
+39. create a file in static/css called variables.css. implement the
+   complete palette in this as css variables with descriptive names.
+40. add a comment to @variables.css listing the sources you consulted to
+   build the palette:
+41. I've updated the project to use yarn as a package manager for the
+   project and added lit as a dependency. rescan the project and update
+   CLAUDE.md as needed.
+42. write a commit message for staged changes
+43. add an appropriate favicon.ico file
+44. create a file in @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/content
+   directory named colors.md. Using markdown format, create content for the
+   file using the response you gave when i requested a new palette. include,
+   if possible, styles referencing @static/css/variables.css variables
+   instead of hard-coding values.
+45. check the markdown file @INDEX.md for spelling, grammar errors, and
+   suggest improvements.
+46. fix all the issues
+47. Analyze changed files and update
+   @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/CLAUDE.md as
+   needed.

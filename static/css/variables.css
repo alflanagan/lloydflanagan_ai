@@ -1,0 +1,84 @@
+/*
+ * Site color palette — parchment / aged paper theme.
+ *
+ * All colors derived from and designed to complement the background
+ * texture: static/images/grunge-paper-background-11.jpg
+ *
+ * Sources consulted when building this palette:
+ *   - Figma color reference — parchment hex, meaning, and pairings
+ *     https://www.figma.com/colors/parchment/
+ *   - media.io — dark academia palette combinations and hex codes
+ *     https://www.media.io/color-palette/dark-academia-color-palette.html
+ *   - media.io — sepia palette ideas, warm brown combinations
+ *     https://www.media.io/color-palette/sepia-color-palette.html
+ *   - media.io — vintage palette ideas and hex codes
+ *     https://www.media.io/color-palette/vintage-color-palette.html
+ *   - Filmora — sepia color palette for design, complementary pairings
+ *     https://filmora.wondershare.com/video-creative-tips/sepia-color-palette.html
+ *   - IxDF — UI color palette best practices 2026
+ *     https://ixdf.org/literature/article/ui-color-palette
+ *
+ * Usage:
+ *   color: var(--color-text-primary);
+ *   background: var(--color-surface-card);
+ *   border: 1px solid var(--color-border-subtle);
+ */
+
+:root {
+
+  /* ─── Parchment neutrals ──────────────────────────────────────────────
+   * Sampled directly from the background texture. Use for surfaces and
+   * text; they harmonize with the paper grain rather than fighting it.
+   * ───────────────────────────────────────────────────────────────────── */
+
+  --parchment-lightest:  #F8EDD4;   /* Lightest highlight — card fills    */
+  --parchment-light:     #E4C98A;   /* Mid-light — borders, dividers      */
+  --parchment-mid:       #C09050;   /* Antique gold — active states       */
+  --parchment-sienna:    #8B5A2B;   /* Sienna brown — secondary text      */
+  --parchment-espresso:  #3D1C08;   /* Deep espresso — headings, body     */
+  --parchment-putty:     #D9C9A8;   /* Dusty putty — muted fills, tags    */
+
+  /* ─── Cool accents ────────────────────────────────────────────────────
+   * Cool-toned counterpoints that prevent the warm palette from feeling
+   * muddy. Use sparingly — one or two per page section.
+   * ───────────────────────────────────────────────────────────────────── */
+
+  --accent-slate-blue:   #4A6D8C;   /* Slate blue — primary links, CTAs   */
+  --accent-sage:         #6B7C5E;   /* Sage green — success, organic      */
+  --accent-crimson:      #7A3B3B;   /* Aged crimson — warnings, emphasis  */
+
+  /* ─── Semantic surface tokens ─────────────────────────────────────────
+   * High-level names to use in templates and components.  Changing the
+   * palette here propagates everywhere automatically.
+   * ───────────────────────────────────────────────────────────────────── */
+
+  /* Surfaces */
+  --color-surface-page:      transparent;            /* Body — shows texture */
+  --color-surface-card:      rgba(248, 237, 212, 0.88); /* Semi-transparent card */
+  --color-surface-card-solid: var(--parchment-lightest); /* Opaque card variant  */
+  --color-surface-dark:      var(--parchment-espresso);  /* Reversed sections    */
+  --color-surface-muted:     var(--parchment-putty);     /* Tags, chips          */
+
+  /* Text */
+  --color-text-primary:      var(--parchment-espresso);  /* Headings, body copy  */
+  --color-text-secondary:    var(--parchment-sienna);    /* Labels, captions     */
+  --color-text-muted:        var(--parchment-mid);       /* Placeholder, hints   */
+  --color-text-on-dark:      var(--parchment-lightest);  /* Text on dark bg      */
+  --color-text-on-dark-muted: var(--parchment-light);   /* Secondary on dark bg */
+
+  /* Links & interactive */
+  --color-link:              var(--accent-slate-blue);
+  --color-link-hover:        var(--parchment-sienna);
+  --color-active:            var(--parchment-mid);       /* Active nav item      */
+  --color-focus-ring:        var(--accent-slate-blue);
+
+  /* Borders */
+  --color-border-subtle:     var(--parchment-light);     /* Cards, dividers      */
+  --color-border-strong:     var(--parchment-sienna);    /* Emphasis borders     */
+
+  /* Status */
+  --color-success:           var(--accent-sage);
+  --color-warning:           var(--parchment-mid);
+  --color-danger:            var(--accent-crimson);
+  --color-info:              var(--accent-slate-blue);
+}
