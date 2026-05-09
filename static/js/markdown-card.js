@@ -5,6 +5,8 @@ import {
   unsafeHTML,
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
+import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/card/card.js';
+
 class MarkdownCard extends LitElement {
   static properties = {
     src: {type: String},
@@ -18,11 +20,11 @@ class MarkdownCard extends LitElement {
   static styles = css`
     :host {
       display: block;
+      /* override sl-card background var. */
+      --sl-panel-background-color: var(--color-surface-card);
     }
 
     .card {
-      background-color: var(--color-surface-card);
-      background-opacity: 100%;
       padding: var(--sl-spacing-large);
       border-radius: var(--sl-border-radius-medium);
       border-width: 1px;
@@ -40,14 +42,13 @@ class MarkdownCard extends LitElement {
       padding: 1rem;
       color: var(--color-danger);
       background: var(--color-danger);
-      background-opacity: 0.5;
       border-radius: var(--sl-border-radius-medium);
     }
 
     .content {
       line-height: 1.6;
       color: var(--color-text-primary);
-      background: var(--color-surface-card-solid);
+      background: transparent;
       padding: var(--sl-spacing-medium);
     }
 
