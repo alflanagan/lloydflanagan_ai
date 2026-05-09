@@ -94,3 +94,6 @@
 45. check the markdown file @INDEX.md for spelling, grammar errors, and
    suggest improvements.
 46. fix all the issues
+47. Analyze changed files and update
+   @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/CLAUDE.md as
+   needed.

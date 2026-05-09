@@ -24,15 +24,19 @@ uv run python main.py
 # Lint
 uv run ruff check .
 
-# Format
+# Format Python
 uv run ruff format .
+
+# Format Jinja2 templates
+uv run djhtml templates
 
 # Run tests
 uv run pytest
 ```
 
 Makefile shortcuts: `make run` (same as `uv run python ./main.py`),
-`make dbuild` (Docker build), `make context` (build context image).
+`make dbuild` (Docker build), `make context` (build context image),
+`make djhtml` (format Jinja2 templates with djhtml).
 
 The `dev` script alias (`uv run dev`) also starts the server via `main.py`.
 
@@ -85,6 +89,10 @@ AI tool, pointing it at `docs/` for ingestion.
 - After editing any Python file, run `ruff check` on it. If errors are
   found, ask the user whether ruff should correct them. If yes, run
   `ruff check --fix` and `ruff format` on the affected files.
+- After editing any Jinja2 template, run `uv run djhtml <file>` (or
+  `make djhtml` to format all templates at once).
+- An `.editorconfig` is present: UTF-8, LF line endings, 2-space indent
+  for most files, tab indent for Makefiles.
 - When a new prompt is used to build the site, append it to `PROMPTS.md` as
   the next numbered list item (hard-wrapped at column 80, continuation lines
   indented 3 spaces to align with the text after the number).

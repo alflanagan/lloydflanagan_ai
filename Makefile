@@ -12,7 +12,7 @@ run:
 	uv run python ./main.py
 
 djhtml:
-	djhtml templates
+	uv run djhtml templates
 
 strfind:
 # prints error message from Makefile. I suspect I need a shell function to prevent
