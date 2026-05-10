@@ -54,7 +54,7 @@
 
   /* Surfaces */
   --color-surface-page:      transparent;            /* Body — shows texture */
-  --color-surface-card:      rgba(248, 237, 212, 0.88); /* Semi-transparent card */
+  --color-surface-card:      rgba(248, 237, 212, 0.70); /* Semi-transparent card */
   --color-surface-card-solid: var(--parchment-lightest); /* Opaque card variant  */
   --color-surface-dark:      var(--parchment-espresso);  /* Reversed sections    */
   --color-surface-muted:     var(--parchment-putty);     /* Tags, chips          */
