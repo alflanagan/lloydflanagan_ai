@@ -97,3 +97,4 @@
 47. Analyze changed files and update
    @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/CLAUDE.md as
    needed.
+48. Update context from changed files and update CLAUDE.md.
