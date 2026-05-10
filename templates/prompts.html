@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Prompts — A Lloyd Flanagan{% endblock %}
+{% block title %}
+  Prompts — A Lloyd Flanagan
+{% endblock title %}
 
 {% block content %}
   <style>
@@ -20,6 +22,7 @@
       display: flex;
       align-items: flex-start;
       gap: 1rem;
+      background-color: var(--color-surface-card);
     }
 
     .prompt-card sl-badge {
@@ -30,14 +33,17 @@
     .prompt-card p {
       margin: 0;
       line-height: 1.6;
-      color: var(--sl-color-neutral-800);
+      color: var(--color-text-primary);
+      background-color: transparent;
     }
   </style>
 
   <h2>AI Prompts</h2>
+
   <p class="prompts-intro">
-    Every feature on this site was built from the prompts below, given to Claude
-    AI in the order shown.
+    Here are the prompts given to Claude during construction of this site. It's
+    theoretically educational, but mostly shows me slowly and painfully learning
+    what I'm doing.
   </p>
 
   <div class="prompt-list">
