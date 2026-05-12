@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "prettier": "^3.8.3"
-  }
+  },
+  "comments": [
+    "win-fork is a misdeclared dependency of shoelace."
+  ]
 }

@@ -5,7 +5,7 @@ import {
   unsafeHTML,
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/card/card.js';
+import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/card/card.js'
 
 class MarkdownCard extends LitElement {
   static properties = {
@@ -34,7 +34,7 @@ class MarkdownCard extends LitElement {
 
     .loading {
       padding: 1rem;
-      color: var(--sl-color-neutral-600);
+      color: var(--color-text-primary);
       font-style: italic;
     }
 
