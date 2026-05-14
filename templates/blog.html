@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{% block scripts %}
+  <script type="module" src="/static/js/blog-card.js"></script>
+{% endblock scripts %}
+
 {% block title %}Blog — A Lloyd Flanagan{% endblock %}
 
 {% block content %}
-  <sl-card>
-    <h2 slot="header">Blog</h2>
-  </sl-card>
+  <blog-card src='/content/blog/260514-My_First_Blog_Post.md' />
 {% endblock %}

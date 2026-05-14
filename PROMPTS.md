@@ -94,3 +94,15 @@
 45. check the markdown file @INDEX.md for spelling, grammar errors, and
    suggest improvements.
 46. fix all the issues
+47. Assume the @content/blog directory contains markdown files, where the
+   name of a file is the publication date in the form YYMMDD, then a dash,
+   then the title of the blog entry (with _ characters replacing spaces),
+   followed by the file extension ".md". For example, a blog entry named
+   "My First Blog Post", published on 5/1/2026, would have filename
+   '260501-My_First_Blog_Post.md'. Create a blog-card component that takes
+   a "src" attribute with a filename. The component will use an <sl-card>
+   element to display the blog post, with a "header" slot populated with
+   the title, and then the publication date in format 'mmm dd, yyyy'
+   right-justified on the same line. For the content of the card, use the
+   approach taken in @static/js/markdown-card.js to render the contents of
+   the file. Match the styling to the markdown-card component.
