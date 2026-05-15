@@ -23,34 +23,59 @@ const MONTHS = [
 ]
 
 /**
- * Parse a blog filename in the form YYMMDD-Title_With_Underscores.md.
- *
- * Returns an object with:
- *   - title: the title with underscores replaced by spaces
- *   - date:  formatted as "Mmm DD, YYYY" (e.g. "May 01, 2026")
+ * Format a raw YYMMDD string as "Mmm DD, YYYY" (e.g. "May 01, 2026").
  */
-function parseFilename(src) {
-  const basename = src.split('/').pop()
-  const noExt = basename.replace(/\.md$/, '')
-  const dashIdx = noExt.indexOf('-')
-
-  if (dashIdx === -1) {
-    return {title: noExt, date: ''}
-  }
-
-  const datePart = noExt.slice(0, dashIdx)
-  const titlePart = noExt.slice(dashIdx + 1)
-
+function formatDate(datePart) {
   const yy = parseInt(datePart.slice(0, 2), 10)
   const mm = parseInt(datePart.slice(2, 4), 10)
   const dd = parseInt(datePart.slice(4, 6), 10)
   const year = 2000 + yy
   const monthStr = MONTHS[mm - 1] ?? '???'
   const dayStr = String(dd).padStart(2, '0')
+  return `${monthStr} ${dayStr}, ${year}`
+}
+
+/**
+ * Parse a blog filename in the form YYMMDD-Title_With_Underscores.md,
+ * or YYMMDD-YYMMDD-Title_With_Underscores.md when a revised date is
+ * present (the second YYMMDD segment).
+ *
+ * Returns an object with:
+ *   - title:   the title with underscores replaced by spaces
+ *   - date:    published date formatted as "Mmm DD, YYYY"
+ *   - revised: revised date formatted as "Mmm DD, YYYY", or '' if absent
+ */
+function parseFilename(src) {
+  const basename = src.split('/').pop()
+  const noExt = basename.replace(/\.md$/, '')
+
+  // Match leading YYMMDD date segment
+  const dateRe = /^(\d{6})-/
+  const firstMatch = noExt.match(dateRe)
+
+  if (!firstMatch) {
+    return {title: noExt.replace(/_/g, ' '), date: '', revised: ''}
+  }
+
+  const publishedDate = formatDate(firstMatch[1])
+  const rest = noExt.slice(firstMatch[0].length)
+
+  // Check whether the next segment is also a YYYYMMDD date (revised date)
+  const secondMatch = rest.match(dateRe)
+  let revisedDate = ''
+  let titlePart
+
+  if (secondMatch) {
+    revisedDate = formatDate(secondMatch[1])
+    titlePart = rest.slice(secondMatch[0].length)
+  } else {
+    titlePart = rest
+  }
 
   return {
     title: titlePart.replace(/_/g, ' '),
-    date: `${monthStr} ${dayStr}, ${year}`,
+    date: publishedDate,
+    revised: revisedDate,
   }
 }
 
@@ -62,6 +87,7 @@ class BlogCard extends LitElement {
     _error: {state: true},
     _title: {state: true},
     _date: {state: true},
+    _revised: {state: true},
   }
 
   static styles = css`
@@ -91,11 +117,22 @@ class BlogCard extends LitElement {
       color: var(--color-text-primary);
     }
 
-    .header-date {
+    .header-dates {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-left: var(--sl-spacing-medium);
+    }
+
+    .header-date,
+    .header-revised {
       font-size: var(--sl-font-size-small);
       color: var(--color-text-secondary);
       white-space: nowrap;
-      margin-left: var(--sl-spacing-medium);
+    }
+
+    .header-revised {
+      font-style: italic;
     }
 
     .loading {
@@ -201,14 +238,16 @@ class BlogCard extends LitElement {
     this._error = null
     this._title = ''
     this._date = ''
+    this._revised = ''
   }
 
   connectedCallback() {
     super.connectedCallback()
     if (this.src) {
-      const {title, date} = parseFilename(this.src)
+      const {title, date, revised} = parseFilename(this.src)
       this._title = title
       this._date = date
+      this._revised = revised
     }
     this.loadMarkdown()
   }
@@ -250,7 +289,12 @@ class BlogCard extends LitElement {
       <sl-card>
         <div slot="header" class="header">
           <span class="header-title">${this._title}</span>
-          <span class="header-date">${this._date}</span>
+          <div class="header-dates">
+            <span class="header-date">${this._date}</span>
+            ${this._revised ?
+              html`<span class="header-revised">Revised: ${this._revised}</span>`
+            : ''}
+          </div>
         </div>
         ${this._loading ?
           html`
