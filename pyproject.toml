@@ -1,7 +1,7 @@
 [project]
 name = "lloydflanagan"
 version = "0.1.0"
-description = "Add your description here"
+description = "Personal/Professional website for A Lloyd Flanagan"
 requires-python = ">=3.14"
 dependencies = [
     "fastapi[standard]>=0.129.0",
@@ -23,7 +23,25 @@ target-version = "py314"
 exclude = ["migrations"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP"]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+mypy_path = ".venv/lib/python3.14/site-packages"
 
 [project.scripts]
 dev = "main:main"
