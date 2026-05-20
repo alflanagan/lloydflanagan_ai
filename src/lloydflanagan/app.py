@@ -1,3 +1,4 @@
+import json
 import re
 from pathlib import Path
 
@@ -36,7 +37,18 @@ async def about(request: Request):
 
 @app.get("/blog")
 async def blog(request: Request):
-    return templates.TemplateResponse("blog.html", {"request": request})
+    blog_posts = list(Path("content/blog").walk())[0][2]
+    return templates.TemplateResponse(
+        "blog.html", {"request": request, "blogfiles": blog_posts}
+    )
+
+
+@app.get("/blogs")
+async def blogs(request: Request):
+    """Return a list of blog entries as a JSON list, where each entry is of the
+    form "/content/blog/YYMMDD[-YYMMDD]-Blog_Post_Title.md"."""
+    blog_posts = list(Path("content/blog").walk())[0][2]
+    return json.dumps(blog_posts)
 
 
 @app.get("/education")
