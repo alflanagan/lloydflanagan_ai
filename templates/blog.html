@@ -7,5 +7,7 @@
 {% block title %}Blog — A Lloyd Flanagan{% endblock %}
 
 {% block content %}
-  <blog-card src='/content/blog/260514-My_First_Blog_Post.md' />
+  {% for post in blogfiles %}
+    <blog-card src="/content/blog/{{ post }}"></blog-card>
+  {% endfor %}
 {% endblock %}

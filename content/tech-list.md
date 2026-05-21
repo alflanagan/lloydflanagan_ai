@@ -1,4 +1,4 @@
-## Third-Party Software
+# Third-Party Software
 
 - [FastAPI](https://fastapi.tiangolo.com) —
   Modern Python web framework chosen for its async-native design,

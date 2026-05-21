@@ -106,3 +106,12 @@
    right-justified on the same line. For the content of the card, use the
    approach taken in @static/js/markdown-card.js to render the contents of
    the file. Match the styling to the markdown-card component.
+48. Update @static/js/blog-card.js to add a last-revised date to the card.
+   It should be displayed immediately below the published date, but only if
+   a date is specified by the filename. The filename of a blog post becomes
+   YYYYMMDD-YYYYMMDD-blog_title.md, where the second date specifies the
+   last-revised date. For example, '20260512-My_First_Blog.md' would
+   indicate a post without a revised date (and thus no changes to layout or
+   filename).
+49. Update the code to change both date formats in the filename to the
+   six-digit YYMMDD format.
