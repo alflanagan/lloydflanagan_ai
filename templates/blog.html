@@ -4,10 +4,22 @@
   <script type="module" src="/static/js/blog-card.js"></script>
 {% endblock scripts %}
 
-{% block title %}Blog — A Lloyd Flanagan{% endblock %}
+{% block title %}Blog — A Lloyd Flanagan{% endblock title %}
+
+{% block page_styles %}
+<style>
+blog-card {
+margin-bottom: 3vh;
+}
+
+blog_card:last {
+margin-bottom: 0;
+}
+</style>
+{% endblock page_styles %}
 
 {% block content %}
   {% for post in blogfiles %}
     <blog-card src="/content/blog/{{ post }}"></blog-card>
   {% endfor %}
-{% endblock %}
+{% endblock content %}
