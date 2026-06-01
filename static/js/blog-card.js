@@ -97,6 +97,10 @@ class BlogCard extends LitElement {
       --sl-panel-background-color: var(--color-surface-card);
     }
 
+    blog-card {
+      margin-bottom: 2rem;
+    }
+
     .card {
       padding: var(--sl-spacing-large);
       border-radius: var(--sl-border-radius-medium);
@@ -109,6 +113,10 @@ class BlogCard extends LitElement {
       justify-content: space-between;
       align-items: baseline;
       width: 100%;
+      font-family: var(--font-heading);
+      padding-bottom: var(--sl-spacing-medium);
+      border-bottom: 1px solid;
+      border-color: var(--accent-color);
     }
 
     .header-title {
@@ -144,7 +152,7 @@ class BlogCard extends LitElement {
     .error {
       padding: 1rem;
       color: var(--color-danger);
-      background: var(--color-danger);
+      background: var(--color-surface-muted);
       border-radius: var(--sl-border-radius-medium);
     }
 
@@ -152,7 +160,11 @@ class BlogCard extends LitElement {
       line-height: 1.6;
       color: var(--color-text-primary);
       background: transparent;
-      padding: var(--sl-spacing-medium);
+      padding-bottom: var(--sl-spacing-medium);
+      padding-left: var(--sl-spacing-medium);
+      padding-right: var(--sl-spacing-medium);
+      font-family: var(--font-content);
+      font-size: var(--sl-font-size-large);
     }
 
     .content h1,
@@ -270,9 +282,8 @@ class BlogCard extends LitElement {
       const markdown = await response.text()
 
       // Dynamically import marked (same approach as markdown-card.js)
-      const {marked} = await import(
-        'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js'
-      )
+      const {marked} =
+        await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js')
 
       const renderedHtml = await marked(markdown)
       this._content = renderedHtml
@@ -292,7 +303,9 @@ class BlogCard extends LitElement {
           <div class="header-dates">
             <span class="header-date">${this._date}</span>
             ${this._revised ?
-              html`<span class="header-revised">Revised: ${this._revised}</span>`
+              html`
+                <span class="header-revised">Revised: ${this._revised}</span>
+              `
             : ''}
           </div>
         </div>

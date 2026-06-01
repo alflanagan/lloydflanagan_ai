@@ -115,3 +115,5 @@
    filename).
 49. Update the code to change both date formats in the filename to the
    six-digit YYMMDD format.
+50. Update @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/CLAUDE.md
+   as needed to match files in the project.

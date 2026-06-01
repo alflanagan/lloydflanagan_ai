@@ -53,8 +53,8 @@
    * ───────────────────────────────────────────────────────────────────── */
 
   /* Surfaces */
-  --color-surface-page:      transparent;            /* Body — shows texture */
-  --color-surface-card:      rgba(248, 237, 212, 0.70); /* Semi-transparent card */
+  --color-surface-page:      transparent;                /* Body — shows texture */
+  --color-surface-card:      rgba(248, 237, 212, 0.70);  /* Semi-transparent card */
   --color-surface-card-solid: var(--parchment-lightest); /* Opaque card variant  */
   --color-surface-dark:      var(--parchment-espresso);  /* Reversed sections    */
   --color-surface-muted:     var(--parchment-putty);     /* Tags, chips          */
@@ -64,7 +64,7 @@
   --color-text-secondary:    var(--parchment-sienna);    /* Labels, captions     */
   --color-text-muted:        var(--parchment-mid);       /* Placeholder, hints   */
   --color-text-on-dark:      var(--parchment-lightest);  /* Text on dark bg      */
-  --color-text-on-dark-muted: var(--parchment-light);   /* Secondary on dark bg */
+  --color-text-on-dark-muted: var(--parchment-light);    /* Secondary on dark bg */
 
   /* Links & interactive */
   --color-link:              var(--accent-slate-blue);
@@ -81,4 +81,10 @@
   --color-warning:           var(--parchment-mid);
   --color-danger:            var(--accent-crimson);
   --color-info:              var(--accent-slate-blue);
+
+  /* Fonts */
+  --font-cursive:            'Playwrite New Zealand Basic', cursive;
+  --font-content:            var(--sl-font-serif);
+  --font-heading:            var(--sl-font-sans);
+  --font-menu:               var(--sl-font-sans);
 }
