@@ -97,6 +97,10 @@ class BlogCard extends LitElement {
       --sl-panel-background-color: var(--color-surface-card);
     }
 
+    blog-card {
+      margin-bottom: 2rem;
+    }
+
     .card {
       padding: var(--sl-spacing-large);
       border-radius: var(--sl-border-radius-medium);
@@ -110,6 +114,9 @@ class BlogCard extends LitElement {
       align-items: baseline;
       width: 100%;
       font-family: var(--font-heading);
+      padding-bottom: var(--sl-spacing-medium);
+      border-bottom: 1px solid;
+      border-color: var(--accent-color);
     }
 
     .header-title {
@@ -145,7 +152,7 @@ class BlogCard extends LitElement {
     .error {
       padding: 1rem;
       color: var(--color-danger);
-      background: var(--color-danger);
+      background: var(--color-surface-muted);
       border-radius: var(--sl-border-radius-medium);
     }
 
@@ -153,7 +160,9 @@ class BlogCard extends LitElement {
       line-height: 1.6;
       color: var(--color-text-primary);
       background: transparent;
-      padding: var(--sl-spacing-medium);
+      padding-bottom: var(--sl-spacing-medium);
+      padding-left: var(--sl-spacing-medium);
+      padding-right: var(--sl-spacing-medium);
       font-family: var(--font-content);
       font-size: var(--sl-font-size-large);
     }
