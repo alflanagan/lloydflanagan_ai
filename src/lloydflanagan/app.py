@@ -35,9 +35,15 @@ async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
 
+def _published_posts() -> list[str]:
+    """Return blog post filenames, excluding drafts (filename ends in -draft.md)."""
+    all_posts = list(Path("content/blog").walk())[0][2]
+    return [p for p in all_posts if not p.endswith("-draft.md")]
+
+
 @app.get("/blog")
 async def blog(request: Request):
-    blog_posts = list(Path("content/blog").walk())[0][2]
+    blog_posts = _published_posts()
     return templates.TemplateResponse(
         "blog.html", {"request": request, "blogfiles": blog_posts}
     )
@@ -47,7 +53,7 @@ async def blog(request: Request):
 async def blogs(request: Request):
     """Return a list of blog entries as a JSON list, where each entry is of the
     form "/content/blog/YYMMDD[-YYMMDD]-Blog_Post_Title.md"."""
-    blog_posts = list(Path("content/blog").walk())[0][2]
+    blog_posts = _published_posts()
     return json.dumps(blog_posts)
 
 
