@@ -286,7 +286,19 @@ class BlogCard extends LitElement {
         await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js')
 
       const renderedHtml = await marked(markdown)
-      this._content = renderedHtml
+
+      // Sanitize rendered HTML to prevent XSS (DOMPurify ESM)
+      let cleanHtml = renderedHtml
+      try {
+        const dompurifyModule = await import('https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js')
+        const DOMPurify = dompurifyModule.default ?? dompurifyModule.DOMPurify ?? dompurifyModule
+        cleanHtml = DOMPurify.sanitize(renderedHtml)
+      } catch (e) {
+        // If DOMPurify fails to load, fall back to unsanitized HTML but log a warning.
+        console.warn('DOMPurify failed to load; rendering unsanitized HTML', e)
+      }
+
+      this._content = cleanHtml
     } catch (error) {
       this._error = error.message
       console.error('Error loading blog post:', error)
