@@ -1,9 +1,9 @@
-import json
 import re
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -21,8 +21,34 @@ app.add_middleware(
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/content", StaticFiles(directory="content"), name="content")
 templates = Jinja2Templates(directory="templates")
+
+
+# Serve content files but refuse access to draft markdowns.
+CONTENT_ROOT = Path("content").resolve()
+
+
+@app.get("/content/{full_path:path}")
+async def content_file(full_path: str):
+    """Serve files from the content/ directory but block draft markdowns.
+
+    This replaces mounting content/ with StaticFiles to avoid accidentally
+    exposing draft posts named "*-draft.md" via /content/ while still
+    serving published content.
+    """
+    # Resolve and ensure the requested path stays inside the content root
+    file_path = (CONTENT_ROOT / full_path).resolve()
+    if not file_path.is_relative_to(CONTENT_ROOT):
+        raise HTTPException(status_code=404)
+
+    # Explicitly block draft-marked markdown files in the blog directory.
+    if file_path.suffix == ".md" and file_path.name.endswith("-draft.md"):
+        raise HTTPException(status_code=404)
+
+    if not file_path.exists() or not file_path.is_file():
+        raise HTTPException(status_code=404)
+
+    return FileResponse(file_path)
 
 
 @app.get("/")
@@ -51,10 +77,13 @@ async def blog(request: Request):
 
 @app.get("/blogs")
 async def blogs(request: Request):
-    """Return a list of blog entries as a JSON list, where each entry is of the
-    form "/content/blog/YYMMDD[-YYMMDD]-Blog_Post_Title.md"."""
+    """Return a list of blog entry filenames (top-level names in content/blog).
+
+    Each entry is a filename like "YYMMDD[-YYMMDD]-Blog_Post_Title.md".
+    """
     blog_posts = _published_posts()
-    return json.dumps(blog_posts)
+    # Return a raw list; FastAPI will serialize this to application/json.
+    return blog_posts
 
 
 @app.get("/education")
