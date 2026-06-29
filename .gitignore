@@ -15,8 +15,8 @@ wheels/
 # Tool caches
 .ruff_cache/
 .pytest_cache/
-# tres secret
-github_mirror_key*
+
+# Mac-only file index
 .DS_Store
 
 # Root framework local data
@@ -34,6 +34,3 @@ github_mirror_key*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-# place where I stash notes I don't want to check in.
-local_notes/

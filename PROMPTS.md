@@ -117,3 +117,7 @@
    six-digit YYMMDD format.
 50. Update @/Users/adrianflanagan/Devel/personal/web/ai/lloydflanagan/CLAUDE.md
    as needed to match files in the project.
+51. Add a capability to have blog posts in a "draft" state. A draft post
+   will have a filename ending in "-draft", e.g.
+   "260601-much_ado_about_nothing-draft.md". Draft posts should not be
+   displayed on the /blog page.
