@@ -125,3 +125,5 @@
 53. save context
 54. implement project redesign as specified in the @/Users/adrianflanagan/Devel/
    personal/web/ai/lloydflanagan/design folder
+55. Revise the file to create semantic component-scoped css variables for
+   attribute values expressed in absolute measurements.

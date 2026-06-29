@@ -120,22 +120,44 @@ class BlogCard extends LitElement {
     :host {
       display: block;
       --sl-panel-background-color: var(--color-surface-card);
+
+      /* ── Font sizes ──────────────────────────────────────────── */
+      --bc-font-size-title: 19px;
+      --bc-font-size-body: 15px;
+      --bc-font-size-meta: 13px;
+      --bc-font-size-h2: 22px;
+      --bc-font-size-h3: 18px;
+      --bc-font-size-label: 11.5px;
+
+      /* ── Spacing ─────────────────────────────────────────────── */
+      --bc-padding-card-x: 28px;
+      --bc-padding-header-y: 16px;
+      --bc-padding-body-top: 20px;
+      --bc-meta-indent: 16px;
+      --bc-preview-row-gap: 10px;
+      --bc-excerpt-gap: 8px;
+
+      /* ── Shape & shadow ──────────────────────────────────────── */
+      --bc-radius-card: 14px;
+      --bc-radius-block: 8px;
+      --bc-radius-code: 4px;
+      --bc-shadow-card: 0 3px 14px rgba(61, 28, 8, 0.08);
     }
 
     sl-card::part(base) {
       border: 1px solid var(--color-border-subtle);
-      border-radius: 14px;
+      border-radius: var(--bc-radius-card);
       background: var(--color-surface-card);
-      box-shadow: 0 3px 14px rgba(61, 28, 8, 0.08);
+      box-shadow: var(--bc-shadow-card);
     }
 
     sl-card::part(header) {
-      padding: 16px 28px;
+      padding: var(--bc-padding-header-y) var(--bc-padding-card-x);
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
     sl-card::part(body) {
-      padding: 20px 28px 28px;
+      padding: var(--bc-padding-body-top) var(--bc-padding-card-x) var(--bc-padding-card-x);
     }
 
     .header {
@@ -148,7 +170,7 @@ class BlogCard extends LitElement {
     .header-title {
       font-family: Georgia, serif;
       font-weight: bold;
-      font-size: 19px;
+      font-size: var(--bc-font-size-title);
       color: var(--color-text-primary);
     }
 
@@ -156,14 +178,14 @@ class BlogCard extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      margin-left: 16px;
+      margin-left: var(--bc-meta-indent);
     }
 
     .header-date,
     .header-revised {
       font-family: Georgia, serif;
       font-style: italic;
-      font-size: 13px;
+      font-size: var(--bc-font-size-meta);
       color: var(--color-text-secondary);
       white-space: nowrap;
     }
@@ -178,12 +200,12 @@ class BlogCard extends LitElement {
       padding: 1rem;
       color: var(--color-danger);
       background: var(--color-surface-muted);
-      border-radius: 8px;
+      border-radius: var(--bc-radius-block);
     }
 
     .content {
       font-family: Georgia, serif;
-      font-size: 15px;
+      font-size: var(--bc-font-size-body);
       line-height: 1.7;
       color: var(--color-text-primary);
       background: transparent;
@@ -201,11 +223,11 @@ class BlogCard extends LitElement {
     }
 
     .content h2 {
-      font-size: 22px;
+      font-size: var(--bc-font-size-h2);
     }
 
     .content h3 {
-      font-size: 18px;
+      font-size: var(--bc-font-size-h3);
     }
 
     .content p {
@@ -225,7 +247,7 @@ class BlogCard extends LitElement {
     .content code {
       background: var(--color-surface-muted);
       padding: 0.2rem 0.4rem;
-      border-radius: 4px;
+      border-radius: var(--bc-radius-code);
       font-family: monospace;
       font-size: 0.9em;
     }
@@ -233,7 +255,7 @@ class BlogCard extends LitElement {
     .content pre {
       background: var(--color-surface-muted);
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: var(--bc-radius-block);
       overflow-x: auto;
       margin: 1rem 0;
     }
@@ -266,8 +288,8 @@ class BlogCard extends LitElement {
       justify-content: space-between;
       align-items: baseline;
       border-bottom: 1px solid rgba(192, 144, 80, 0.32);
-      padding-bottom: 16px;
-      margin-bottom: 10px;
+      padding-bottom: var(--bc-padding-header-y);
+      margin-bottom: var(--bc-preview-row-gap);
     }
 
     .preview-row:last-of-type {
@@ -277,7 +299,7 @@ class BlogCard extends LitElement {
     .preview-title a {
       font-family: Georgia, serif;
       font-weight: bold;
-      font-size: 19px;
+      font-size: var(--bc-font-size-title);
       color: var(--color-text-primary);
       text-decoration: none;
     }
@@ -289,23 +311,23 @@ class BlogCard extends LitElement {
     .preview-date {
       font-family: Georgia, serif;
       font-style: italic;
-      font-size: 13px;
+      font-size: var(--bc-font-size-meta);
       color: var(--color-text-secondary);
       white-space: nowrap;
-      margin-left: 16px;
+      margin-left: var(--bc-meta-indent);
     }
 
     .preview-excerpt {
       font-family: Georgia, serif;
-      font-size: 15px;
+      font-size: var(--bc-font-size-body);
       line-height: 1.7;
       color: var(--color-text-primary);
-      margin: 0 0 8px;
+      margin: 0 0 var(--bc-excerpt-gap);
     }
 
     .preview-read-more {
       font-family: system-ui, sans-serif;
-      font-size: 11.5px;
+      font-size: var(--bc-font-size-label);
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
