@@ -5,206 +5,323 @@ import {
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js'
 
 class SiteHeader extends LitElement {
+  static properties = {
+    _menuOpen: {state: true},
+  }
+
   /* note comment blocks before string literals are a hint to prettier */
   static styles = /* css */ css`
     :host {
       display: block;
-      border-bottom: 1px solid var(--accent-slate-blue);
-      background: var(--color-surface-page);
-      color: var(--color-parchment-espresso);
+      background: transparent;
     }
 
-    .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: var(--sl-spacing-large) var(--sl-spacing-medium)
-        var(--sl-spacing-medium);
-      position: relative;
-    }
-
-    .header-right {
-      position: absolute;
-      top: 1.5rem;
-      right: 1rem;
+    /* ── Masthead wrapper ─────────────────────────────────────── */
+    .masthead {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--sl-spacing-medium);
+      padding: 36px 24px 0;
+      position: relative;
     }
 
-    .header-right a.active {
-      pointer-events: none;
-      opacity: 0.5;
-      cursor: not-allowed;
+    /* ── Crest / logo ─────────────────────────────────────────── */
+    .crest {
+      width: 60px;
+      height: 60px;
+      border-radius: 13px;
+      box-shadow: 0 3px 11px rgba(61, 28, 8, 0.32);
+      object-fit: cover;
+      margin-bottom: 14px;
     }
 
-    .github-link {
-      color: var(--color-text-primary);
-      text-decoration: none;
-    }
-
-    .github-link svg {
-      width: 28px;
-      height: 28px;
-      fill: currentColor;
-      display: block;
-    }
-
-    .gitlab-link {
-      color: var(--color-text-primary);
-      text-decoration: none;
-    }
-
-    .design-link {
-      font-size: var(--sl-font-size-medium);
-      color: var(--color-text-primary);
-      text-decoration: none;
-    }
-
-    h1 {
-      margin: 0 0 1rem;
-      font-size: calc(var(--sl-font-size-2x-large) * 1.5);
+    /* ── Brand name ───────────────────────────────────────────── */
+    .brand {
       font-family: 'Playwrite New Zealand Basic', cursive;
+      font-size: 40px;
+      line-height: 1.35;
       color: var(--color-text-primary);
       text-align: center;
+      margin: 0 0 6px;
     }
 
-    h1 a {
+    .brand a {
       color: inherit;
       text-decoration: none;
     }
 
-    h1 a:hover {
+    .brand a:hover {
       opacity: 0.8;
     }
 
+    /* ── Tagline ──────────────────────────────────────────────── */
+    .tagline {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      margin: 0 0 22px;
+      text-align: center;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────── */
     nav {
       display: flex;
-      gap: 1rem;
+      flex-direction: row;
+      gap: 26px;
+      justify-content: center;
+      align-items: center;
     }
 
     nav a {
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
       text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: var(--sl-border-radius-medium, 0.25rem);
-      color: var(--color-link);
-      font-size: var(--sl-font-size-large);
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
       transition:
-        background 0.2s,
-        color 0.2s;
+        color 0.15s,
+        border-color 0.15s;
     }
 
     nav a:hover {
-      color: var(--color-link-hover);
+      color: var(--color-text-primary);
     }
 
     nav a.active {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-active);
       pointer-events: none;
-      opacity: 0.5;
-      cursor: not-allowed;
     }
 
-    nav a sl-icon {
-      color: var(--parchment-lightest);
+    /* ── Divider rule ─────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      max-width: 560px;
+      height: 1px;
+      border: none;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(192, 144, 80, 0.6),
+        transparent
+      );
+      margin: 30px 0 0;
     }
 
-    nav a:hover sl-icon {
-      color: var(--color-surface-card-solid);
+    /* ── GitHub pill (fixed top-right) ───────────────────────── */
+    .github-pill {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      background: rgba(248, 237, 212, 0.78);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 22px;
+      padding: 7px 14px;
+      text-decoration: none;
+      box-shadow: 0 2px 7px rgba(61, 28, 8, 0.1);
+      white-space: nowrap;
+      z-index: 100;
     }
 
-    nav a.active sl-icon {
-      color: white;
+    .github-pill:hover {
+      color: var(--color-text-primary);
+    }
+
+    /* ── Hamburger button (mobile only) ──────────────────────── */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 36px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 19px;
+      height: 2px;
+      background: var(--color-text-primary);
+      border-radius: 1px;
+    }
+
+    /* ── Mobile drawer ────────────────────────────────────────── */
+    .drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(250, 243, 226, 0.97);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .drawer.open {
+      display: flex;
+    }
+
+    .drawer-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-text-primary);
+      line-height: 1;
+    }
+
+    .drawer a {
+      font-family: system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: 11px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--color-border-subtle);
+      background: rgba(248, 237, 212, 0.6);
+      width: 180px;
+      text-align: center;
+    }
+
+    .drawer a.active {
+      color: var(--color-text-primary);
+      border-color: var(--color-active);
+      background: rgba(192, 144, 80, 0.14);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .crest {
+        display: none;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .masthead {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 14px 16px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .divider {
+        margin: 10px 0 0;
+      }
     }
   `
+
+  constructor() {
+    super()
+    this._menuOpen = false
+  }
+
+  _toggleMenu() {
+    this._menuOpen = !this._menuOpen
+  }
+
+  _closeMenu() {
+    this._menuOpen = false
+  }
 
   render() {
     const currentPath = window.location.pathname
 
+    const navLink = (href, label) => html`
+      <a
+        href="${href}"
+        class="${currentPath === href ? 'active' : ''}"
+        @click="${currentPath === href ? (e) => e.preventDefault() : null}">
+        ${label}
+      </a>
+    `
+
+    const drawerLink = (href, label) => html`
+      <a
+        href="${href}"
+        class="${currentPath === href ? 'active' : ''}"
+        @click="${() => this._closeMenu()}">
+        ${label}
+      </a>
+    `
+
     return /* html */ html`
-      <div class="header-inner">
-        <div class="header-right">
-          <a
-            class="github-link"
-            href="https://github.com/alflanagan/lloydflanagan_ai"
-            target="_blank"
-            rel="noopener"
-            title="View on GitHub">
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-            </svg>
-          </a>
-          <a
-            class="gitlab-link"
-            href="https://gitlab.com/alflanagan/lloydflanagan_ai"
-            target="_blank"
-            rel="noopener"
-            title="View on Gitlab">
-            <span aria-hidden="true" data-testid="brand-header-default-logo">
-              <svg
-                aria-hidden="true"
-                role="img"
-                class="tanuki-logo"
-                width="25"
-                height="24"
-                viewBox="0 0 25 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  class="tanuki-shape tanuki"
-                  d="m24.507 9.5-.034-.09L21.082.562a.896.896 0 0 0-1.694.091l-2.29 7.01H7.825L5.535.653a.898.898 0 0 0-1.694-.09L.451 9.411.416 9.5a6.297 6.297 0 0 0 2.09 7.278l.012.01.03.022 5.16 3.867 2.56 1.935 1.554 1.176a1.051 1.051 0 0 0 1.268 0l1.555-1.176 2.56-1.935 5.197-3.89.014-.01A6.297 6.297 0 0 0 24.507 9.5Z"
-                  fill="#E24329"></path>
-                <path
-                  class="tanuki-shape right-cheek"
-                  d="m24.507 9.5-.034-.09a11.44 11.44 0 0 0-4.56 2.051l-7.447 5.632 4.742 3.584 5.197-3.89.014-.01A6.297 6.297 0 0 0 24.507 9.5Z"
-                  fill="#FC6D26"></path>
-                <path
-                  class="tanuki-shape chin"
-                  d="m7.707 20.677 2.56 1.935 1.555 1.176a1.051 1.051 0 0 0 1.268 0l1.555-1.176 2.56-1.935-4.743-3.584-4.755 3.584Z"
-                  fill="#FCA326"></path>
-                <path
-                  class="tanuki-shape left-cheek"
-                  d="M5.01 11.461a11.43 11.43 0 0 0-4.56-2.05L.416 9.5a6.297 6.297 0 0 0 2.09 7.278l.012.01.03.022 5.16 3.867 4.745-3.584-7.444-5.632Z"
-                  fill="#FC6D26"></path>
-              </svg>
-            </span>
-          </a>
-          <a class="design-link ${currentPath === '/design' ? 'active' : ''}"
-             href="/design"
-             ${currentPath === '/design' ? '[aria-disabled="true"]' : ''}>
-          Design
-          </a>
-        </div>
-        <h1><a href="/">A Lloyd Flanagan</a></h1>
+      <a
+        class="github-pill"
+        href="https://github.com/alflanagan/lloydflanagan_ai"
+        target="_blank"
+        rel="noopener">
+        GitHub ↗
+      </a>
+
+      <div class="masthead">
+        <img
+          class="crest"
+          src="/static/images/art_deco_logo_192x192.png"
+          alt="A. Lloyd Flanagan logo" />
+        <p class="brand"><a href="/">A. Lloyd Flanagan</a></p>
+        <p class="tagline">Father · Husband · Professional Programmer</p>
         <nav>
-          <a
-            href="/"
-            class="${currentPath === '/' ? 'active' : ''}"
-            title="Home"
-            aria-label="Home"
-            ${currentPath === '/' ? '[aria-disabled="true"]' : ''}">
-            Home
-          </a>
-          <a
-            href="/about"
-            class="${currentPath === '/about' ? 'active' : ''}"
-            ${currentPath === '/about' ? '[aria-disabled="true"]' : ''}>
-            About Me
-          </a>
-          <a href="/blog" class="${currentPath === '/blog' ? 'active' : ''}" ${currentPath === '/blog' ? '[aria-disabled="true"]' : ''}>
-            Blog
-          </a>
-          <a
-            href="/education"
-            class="${currentPath === '/education' ? 'active' : ''}" ${currentPath === '/education' ? '[aria-disabled="true"]' : ''}>
-            Education
-          </a>
-          <a
-            href="/prompts"
-            class="${currentPath === '/prompts' ? 'active' : ''}" ${currentPath === '/prompts' ? '[aria-disabled="true"]' : ''}>
-            Prompts
-          </a>
+          ${navLink('/', 'Home')} ${navLink('/about', 'About')}
+          ${navLink('/blog', 'Blog')} ${navLink('/education', 'Education')}
+          ${navLink('/prompts', 'Prompts')}
         </nav>
+        <button
+          class="hamburger"
+          aria-label="Open navigation"
+          @click="${this._toggleMenu}">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <hr class="divider" />
+      </div>
+
+      <div class="drawer ${this._menuOpen ? 'open' : ''}">
+        <button
+          class="drawer-close"
+          aria-label="Close navigation"
+          @click="${this._closeMenu}">
+          ✕
+        </button>
+        ${drawerLink('/', 'Home')} ${drawerLink('/about', 'About')}
+        ${drawerLink('/blog', 'Blog')} ${drawerLink('/education', 'Education')}
+        ${drawerLink('/prompts', 'Prompts')}
       </div>
     `
   }
