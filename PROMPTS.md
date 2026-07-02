@@ -127,3 +127,5 @@
    personal/web/ai/lloydflanagan/design folder
 55. Revise the file to create semantic component-scoped css variables for
    attribute values expressed in absolute measurements.
+56. reread @static/js/markdown-card.js and replace absolute attribute values
+   with CSS variables where reasonable
