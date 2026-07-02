@@ -2,54 +2,26 @@
 
 {% block title %}Design Notes — A Lloyd Flanagan{% endblock %}
 
-{% block content %}
+{% block page_styles %}
   <style>
+    .intro-heading {
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 25px;
+      color: var(--color-text-primary);
+      margin: 0 0 13px;
+    }
+
     .design-cards {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
-
-    .design-cards sl-card::part(base) {
-      --padding: 1.5rem;
-    }
-
-    .design-cards h2 {
-      margin: 0 0 1rem;
-      font-size: var(--sl-font-size-x-large);
-      color: var(--sl-color-neutral-900);
-    }
-
-    .design-cards p {
-      margin: 0;
-      line-height: 1.7;
-      color: var(--sl-color-neutral-800);
-    }
-
-    .tech-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .tech-list li {
-      display: flex;
-      gap: 0.5rem;
-      line-height: 1.6;
-      color: var(--sl-color-neutral-800);
-    }
-
-    .tech-name {
-      font-weight: var(--sl-font-weight-semibold);
-      color: var(--sl-color-primary-700);
-      white-space: nowrap;
-    }
   </style>
+{% endblock page_styles %}
 
-  <h2>Design Notes</h2>
+{% block content %}
+  <h2 class="intro-heading">Design Notes</h2>
 
   <div class="design-cards">
     <markdown-card src="/content/design-goals.md"></markdown-card>

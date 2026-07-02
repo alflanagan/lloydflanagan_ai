@@ -299,7 +299,7 @@ class SiteHeader extends LitElement {
         <nav>
           ${navLink('/', 'Home')} ${navLink('/about', 'About')}
           ${navLink('/blog', 'Blog')} ${navLink('/education', 'Education')}
-          ${navLink('/prompts', 'Prompts')}
+          ${navLink('/prompts', 'Prompts')} ${navLink('/design', 'Design')}
         </nav>
         <button
           class="hamburger"
@@ -321,7 +321,7 @@ class SiteHeader extends LitElement {
         </button>
         ${drawerLink('/', 'Home')} ${drawerLink('/about', 'About')}
         ${drawerLink('/blog', 'Blog')} ${drawerLink('/education', 'Education')}
-        ${drawerLink('/prompts', 'Prompts')}
+        ${drawerLink('/prompts', 'Prompts')} ${drawerLink('/design', 'Design')}
       </div>
     `
   }

@@ -129,3 +129,5 @@
    attribute values expressed in absolute measurements.
 56. reread @static/js/markdown-card.js and replace absolute attribute values
    with CSS variables where reasonable
+57. Develop a plan for updating the /design endpoint to reflect changes made
+   in this branch.
