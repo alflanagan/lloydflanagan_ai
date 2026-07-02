@@ -53,7 +53,10 @@ async def content_file(full_path: str):
 
 @app.get("/")
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    recent = sorted(_published_posts(), reverse=True)[:3]
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "recent_posts": recent}
+    )
 
 
 @app.get("/about")

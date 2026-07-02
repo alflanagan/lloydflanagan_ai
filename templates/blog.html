@@ -7,15 +7,16 @@
 {% block title %}Blog — A Lloyd Flanagan{% endblock title %}
 
 {% block page_styles %}
-<style>
-blog-card {
-margin-bottom: 3vh;
-}
+  <style>
+    blog-card {
+      display: block;
+      margin-top: 30px;
+    }
 
-blog_card:last {
-margin-bottom: 0;
-}
-</style>
+    blog-card:first-child {
+      margin-top: 0;
+    }
+  </style>
 {% endblock page_styles %}
 
 {% block content %}

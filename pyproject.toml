@@ -40,6 +40,7 @@ select = [
 ]
 
 [tool.mypy]
+cache_dir = ".mypy_cache"
 warn_return_any = true
 warn_unused_configs = true
 mypy_path = ".venv/lib/python3.14/site-packages"

@@ -20,16 +20,38 @@ class MarkdownCard extends LitElement {
   static styles = css`
     :host {
       display: block;
-      /* override sl-card background var. */
       --sl-panel-background-color: var(--color-surface-card);
+
+      /* ── Font sizes ──────────────────────────────────────────── */
+      --mc-font-size-body: 16px;
+      --mc-font-size-h2: 25px;
+      --mc-font-size-h3: 20px;
+
+      /* ── Spacing ─────────────────────────────────────────────── */
+      --mc-padding-card-y: 28px;
+      --mc-padding-card-x: 30px;
+
+      /* ── Shape & shadow ──────────────────────────────────────── */
+      --mc-radius-card: 14px;
+      --mc-radius-block: 8px;
+      --mc-radius-code: 4px;
+      --mc-shadow-card: 0 3px 14px rgba(61, 28, 8, 0.08);
     }
 
-    .card {
-      padding: var(--sl-spacing-large);
-      border-radius: var(--sl-border-radius-medium);
-      border-width: 1px;
-      border-color: var(--color-border-strong);
-      /* --color-border-subtle isn't visible with the background texture */
+    sl-card {
+      --sl-panel-background-color: var(--color-surface-card);
+      border-radius: var(--mc-radius-card);
+      box-shadow: var(--mc-shadow-card);
+    }
+
+    sl-card::part(base) {
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--mc-radius-card);
+      background: var(--color-surface-card);
+    }
+
+    sl-card::part(body) {
+      padding: var(--mc-padding-card-y) var(--mc-padding-card-x);
     }
 
     .loading {
@@ -41,15 +63,16 @@ class MarkdownCard extends LitElement {
     .error {
       padding: 1rem;
       color: var(--color-danger);
-      background: var(--color-danger);
-      border-radius: var(--sl-border-radius-medium);
+      background: var(--color-surface-muted);
+      border-radius: var(--mc-radius-block);
     }
 
     .content {
-      line-height: 1.6;
+      font-family: Georgia, serif;
+      font-size: var(--mc-font-size-body);
+      line-height: 1.75;
       color: var(--color-text-primary);
       background: transparent;
-      padding: var(--sl-spacing-medium);
     }
 
     .content h1,
@@ -60,19 +83,15 @@ class MarkdownCard extends LitElement {
     .content h6 {
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .content h1 {
-      font-size: var(--sl-font-size-2x-large);
+      font-weight: bold;
     }
 
     .content h2 {
-      font-size: var(--sl-font-size-x-large);
+      font-size: var(--mc-font-size-h2);
     }
 
     .content h3 {
-      font-size: var(--sl-font-size-large);
+      font-size: var(--mc-font-size-h3);
     }
 
     .content p {
@@ -92,7 +111,7 @@ class MarkdownCard extends LitElement {
     .content code {
       background: var(--color-surface-muted);
       padding: 0.2rem 0.4rem;
-      border-radius: var(--sl-border-radius-small);
+      border-radius: var(--mc-radius-code);
       font-family: monospace;
       font-size: 0.9em;
     }
@@ -100,7 +119,7 @@ class MarkdownCard extends LitElement {
     .content pre {
       background: var(--color-surface-muted);
       padding: 1rem;
-      border-radius: var(--sl-border-radius-medium);
+      border-radius: var(--mc-radius-block);
       overflow-x: auto;
       margin: 1rem 0;
     }
@@ -114,12 +133,12 @@ class MarkdownCard extends LitElement {
       border-left: 4px solid var(--color-border-subtle);
       padding-left: 1rem;
       margin: 1rem 0;
-      color: var(--sl-color-neutral-700);
+      color: var(--color-text-secondary);
       font-style: italic;
     }
 
     .content a {
-      color: var(--color-text-secondary);
+      color: var(--color-link);
       text-decoration: none;
     }
 

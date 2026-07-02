@@ -1,57 +1,90 @@
 {% extends "base.html" %}
 
-{% block title %}
-  Prompts — A Lloyd Flanagan
-{% endblock title %}
+{% block title %}Prompts — A Lloyd Flanagan{% endblock title %}
 
-{% block content %}
+{% block page_styles %}
   <style>
-    .prompts-intro {
-      margin-bottom: 1.5rem;
-      color: var(--sl-color-neutral-700);
-      font-size: var(--sl-font-size-medium);
+    .card {
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(61, 28, 8, 0.08);
+      padding: 28px 30px;
+      margin-top: 30px;
     }
 
-    .prompt-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .card:first-child {
+      margin-top: 0;
+    }
+
+    .intro-heading {
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 25px;
+      color: var(--color-text-primary);
+      margin: 0 0 13px;
+    }
+
+    .intro-body {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-text-primary);
+      margin: 0;
     }
 
     .prompt-card {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
-      background-color: var(--color-surface-card);
+      gap: 16px;
     }
 
-    .prompt-card sl-badge {
+    .prompt-number {
+      font-family: 'Playwrite New Zealand Basic', cursive;
+      font-size: 15px;
+      color: var(--color-active);
       flex-shrink: 0;
-      margin-top: 0.25rem;
+      min-width: 28px;
+      line-height: 1.6;
     }
 
-    .prompt-card p {
-      margin: 0;
-      line-height: 1.6;
+    .prompt-text {
+      font-family: Georgia, serif;
+      font-size: 12.5px;
+      line-height: 1.7;
       color: var(--color-text-primary);
-      background-color: transparent;
+      margin: 0;
+    }
+
+    .prompts-footer {
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-align: center;
+      margin-top: 30px;
     }
   </style>
+{% endblock page_styles %}
 
-  <h2>AI Prompts</h2>
-
-  <p class="prompts-intro">
-    Here are the prompts given to Claude during construction of this site. It's
-    theoretically educational, but mostly shows me slowly and painfully learning
-    what I'm doing.
-  </p>
-
-  <div class="prompt-list">
-    {% for prompt in prompts %}
-      <sl-card class="prompt-card">
-        <sl-badge variant="neutral" pill>{{ loop.index }}</sl-badge>
-        <p>{{ prompt }}</p>
-      </sl-card>
-    {% endfor %}
+{% block content %}
+  <div class="card">
+    <h2 class="intro-heading">The Prompts</h2>
+    <p class="intro-body">
+      Every prompt used to build this site, in order. A record of the
+      conversation between me and Claude — slowly and sometimes painfully
+      learning how to collaborate with an AI.
+    </p>
   </div>
+
+  {% for prompt in prompts %}
+    <div class="card prompt-card">
+      <span class="prompt-number">{{ "%02d"|format(loop.index) }}</span>
+      <p class="prompt-text">{{ prompt }}</p>
+    </div>
+  {% endfor %}
+
+  <p class="prompts-footer">{{ prompts|length }} prompts total</p>
 {% endblock %}

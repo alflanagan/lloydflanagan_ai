@@ -121,3 +121,11 @@
    will have a filename ending in "-draft", e.g.
    "260601-much_ado_about_nothing-draft.md". Draft posts should not be
    displayed on the /blog page.
+52. update context from project folder
+53. save context
+54. implement project redesign as specified in the @/Users/adrianflanagan/Devel/
+   personal/web/ai/lloydflanagan/design folder
+55. Revise the file to create semantic component-scoped css variables for
+   attribute values expressed in absolute measurements.
+56. reread @static/js/markdown-card.js and replace absolute attribute values
+   with CSS variables where reasonable

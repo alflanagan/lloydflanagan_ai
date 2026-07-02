@@ -79,10 +79,36 @@ function parseFilename(src) {
   }
 }
 
+/**
+ * Extract the first plain-text paragraph from a markdown string.
+ * Used for the excerpt in preview mode.
+ */
+function extractExcerpt(markdown) {
+  // Split into lines, skip headings/blank lines, take first paragraph block
+  const lines = markdown.split('\n')
+  const paraLines = []
+  let inPara = false
+
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed) {
+      if (inPara) break
+      continue
+    }
+    if (trimmed.startsWith('#')) continue
+    inPara = true
+    paraLines.push(trimmed)
+  }
+
+  return paraLines.join(' ').replace(/[*_`[\]]/g, '')
+}
+
 class BlogCard extends LitElement {
   static properties = {
     src: {type: String},
+    preview: {type: Boolean},
     _content: {state: true},
+    _excerpt: {state: true},
     _loading: {state: true},
     _error: {state: true},
     _title: {state: true},
@@ -93,19 +119,45 @@ class BlogCard extends LitElement {
   static styles = css`
     :host {
       display: block;
-      /* override sl-card background var. */
       --sl-panel-background-color: var(--color-surface-card);
+
+      /* ── Font sizes ──────────────────────────────────────────── */
+      --bc-font-size-title: 19px;
+      --bc-font-size-body: 15px;
+      --bc-font-size-meta: 13px;
+      --bc-font-size-h2: 22px;
+      --bc-font-size-h3: 18px;
+      --bc-font-size-label: 11.5px;
+
+      /* ── Spacing ─────────────────────────────────────────────── */
+      --bc-padding-card-x: 28px;
+      --bc-padding-header-y: 16px;
+      --bc-padding-body-top: 20px;
+      --bc-meta-indent: 16px;
+      --bc-preview-row-gap: 10px;
+      --bc-excerpt-gap: 8px;
+
+      /* ── Shape & shadow ──────────────────────────────────────── */
+      --bc-radius-card: 14px;
+      --bc-radius-block: 8px;
+      --bc-radius-code: 4px;
+      --bc-shadow-card: 0 3px 14px rgba(61, 28, 8, 0.08);
     }
 
-    blog-card {
-      margin-bottom: 2rem;
+    sl-card::part(base) {
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--bc-radius-card);
+      background: var(--color-surface-card);
+      box-shadow: var(--bc-shadow-card);
     }
 
-    .card {
-      padding: var(--sl-spacing-large);
-      border-radius: var(--sl-border-radius-medium);
-      border-width: 1px;
-      border-color: var(--color-border-strong);
+    sl-card::part(header) {
+      padding: var(--bc-padding-header-y) var(--bc-padding-card-x);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    sl-card::part(body) {
+      padding: var(--bc-padding-body-top) var(--bc-padding-card-x) var(--bc-padding-card-x);
     }
 
     .header {
@@ -113,15 +165,12 @@ class BlogCard extends LitElement {
       justify-content: space-between;
       align-items: baseline;
       width: 100%;
-      font-family: var(--font-heading);
-      padding-bottom: var(--sl-spacing-medium);
-      border-bottom: 1px solid;
-      border-color: var(--accent-color);
     }
 
     .header-title {
-      font-weight: 600;
-      font-size: var(--sl-font-size-large);
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: var(--bc-font-size-title);
       color: var(--color-text-primary);
     }
 
@@ -129,18 +178,16 @@ class BlogCard extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      margin-left: var(--sl-spacing-medium);
+      margin-left: var(--bc-meta-indent);
     }
 
     .header-date,
     .header-revised {
-      font-size: var(--sl-font-size-small);
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: var(--bc-font-size-meta);
       color: var(--color-text-secondary);
       white-space: nowrap;
-    }
-
-    .header-revised {
-      font-style: italic;
     }
 
     .loading {
@@ -153,18 +200,15 @@ class BlogCard extends LitElement {
       padding: 1rem;
       color: var(--color-danger);
       background: var(--color-surface-muted);
-      border-radius: var(--sl-border-radius-medium);
+      border-radius: var(--bc-radius-block);
     }
 
     .content {
-      line-height: 1.6;
+      font-family: Georgia, serif;
+      font-size: var(--bc-font-size-body);
+      line-height: 1.7;
       color: var(--color-text-primary);
       background: transparent;
-      padding-bottom: var(--sl-spacing-medium);
-      padding-left: var(--sl-spacing-medium);
-      padding-right: var(--sl-spacing-medium);
-      font-family: var(--font-content);
-      font-size: var(--sl-font-size-large);
     }
 
     .content h1,
@@ -175,19 +219,15 @@ class BlogCard extends LitElement {
     .content h6 {
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .content h1 {
-      font-size: var(--sl-font-size-2x-large);
+      font-weight: bold;
     }
 
     .content h2 {
-      font-size: var(--sl-font-size-x-large);
+      font-size: var(--bc-font-size-h2);
     }
 
     .content h3 {
-      font-size: var(--sl-font-size-large);
+      font-size: var(--bc-font-size-h3);
     }
 
     .content p {
@@ -207,7 +247,7 @@ class BlogCard extends LitElement {
     .content code {
       background: var(--color-surface-muted);
       padding: 0.2rem 0.4rem;
-      border-radius: var(--sl-border-radius-small);
+      border-radius: var(--bc-radius-code);
       font-family: monospace;
       font-size: 0.9em;
     }
@@ -215,7 +255,7 @@ class BlogCard extends LitElement {
     .content pre {
       background: var(--color-surface-muted);
       padding: 1rem;
-      border-radius: var(--sl-border-radius-medium);
+      border-radius: var(--bc-radius-block);
       overflow-x: auto;
       margin: 1rem 0;
     }
@@ -229,16 +269,73 @@ class BlogCard extends LitElement {
       border-left: 4px solid var(--color-border-subtle);
       padding-left: 1rem;
       margin: 1rem 0;
-      color: var(--sl-color-neutral-700);
+      color: var(--color-text-secondary);
       font-style: italic;
     }
 
     .content a {
-      color: var(--color-text-secondary);
+      color: var(--color-link);
       text-decoration: none;
     }
 
     .content a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Preview mode ─────────────────────────────────────────── */
+    .preview-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(192, 144, 80, 0.32);
+      padding-bottom: var(--bc-padding-header-y);
+      margin-bottom: var(--bc-preview-row-gap);
+    }
+
+    .preview-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .preview-title a {
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: var(--bc-font-size-title);
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    .preview-title a:hover {
+      color: var(--color-link);
+    }
+
+    .preview-date {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: var(--bc-font-size-meta);
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      margin-left: var(--bc-meta-indent);
+    }
+
+    .preview-excerpt {
+      font-family: Georgia, serif;
+      font-size: var(--bc-font-size-body);
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      margin: 0 0 var(--bc-excerpt-gap);
+    }
+
+    .preview-read-more {
+      font-family: system-ui, sans-serif;
+      font-size: var(--bc-font-size-label);
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-link);
+      text-decoration: none;
+    }
+
+    .preview-read-more:hover {
       text-decoration: underline;
     }
   `
@@ -246,11 +343,13 @@ class BlogCard extends LitElement {
   constructor() {
     super()
     this._content = ''
+    this._excerpt = ''
     this._loading = false
     this._error = null
     this._title = ''
     this._date = ''
     this._revised = ''
+    this.preview = false
   }
 
   connectedCallback() {
@@ -285,13 +384,18 @@ class BlogCard extends LitElement {
       const {marked} =
         await import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js')
 
+      this._excerpt = extractExcerpt(markdown)
       const renderedHtml = await marked(markdown)
 
       // Sanitize rendered HTML to prevent XSS (DOMPurify ESM)
       let cleanHtml = renderedHtml
       try {
-        const dompurifyModule = await import('https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js')
-        const DOMPurify = dompurifyModule.default ?? dompurifyModule.DOMPurify ?? dompurifyModule
+        const dompurifyModule =
+          await import('https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js')
+        const DOMPurify =
+          dompurifyModule.default ??
+          dompurifyModule.DOMPurify ??
+          dompurifyModule
         cleanHtml = DOMPurify.sanitize(renderedHtml)
       } catch (e) {
         // If DOMPurify fails to load, fall back to unsanitized HTML but log a warning.
@@ -307,7 +411,37 @@ class BlogCard extends LitElement {
     }
   }
 
+  _postUrl() {
+    if (!this.src) return '#'
+    const filename = this.src.split('/').pop()
+    return `/content/blog/${filename}`
+  }
+
   render() {
+    if (this.preview) {
+      return html`
+        <div class="preview-row">
+          <div style="flex: 1; min-width: 0;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="preview-title">
+                <a href="${this._postUrl()}">${this._title}</a>
+              </span>
+              <span class="preview-date">${this._date}</span>
+            </div>
+            ${this._excerpt ?
+              html`
+                <p class="preview-excerpt">${this._excerpt}</p>
+              `
+            : ''}
+            <a class="preview-read-more" href="${this._postUrl()}">
+              Read more →
+            </a>
+          </div>
+        </div>
+      `
+    }
+
     return html`
       <sl-card>
         <div slot="header" class="header">
