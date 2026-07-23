@@ -1,0 +1,7 @@
+<!-- @dsCard group="Type" viewport="700x160" name="Meta, Labels & Nav" subtitle="system-ui for chrome; Georgia italic for dates" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:18px;color:var(--color-text-primary);display:flex;flex-direction:column;gap:12px}.label{font-family:var(--font-ui);font-size:var(--text-label);font-weight:700;letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--color-active)}.nav{font-family:var(--font-ui);font-size:var(--text-label);font-weight:600;letter-spacing:var(--tracking-nav);text-transform:uppercase;color:var(--color-text-secondary);border-bottom:2px solid var(--color-active);padding-bottom:4px;width:fit-content}.date{font-family:var(--font-body);font-style:italic;font-size:var(--text-meta);color:var(--color-text-secondary)}.readmore{font-family:var(--font-ui);font-size:var(--text-read-more);font-weight:600;letter-spacing:var(--tracking-readmore);text-transform:uppercase;color:var(--color-link)}</style>
+<div class="label">Section Label</div>
+<div class="nav">Active Nav Item</div>
+<div class="date">Jun 12, 2026 — italic meta date</div>
+<div class="readmore">Read more →</div>

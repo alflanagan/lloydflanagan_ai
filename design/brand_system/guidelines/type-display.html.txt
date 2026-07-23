@@ -1,0 +1,6 @@
+<!-- @dsCard group="Type" viewport="700x220" name="Display & Heading" subtitle="Playwrite NZ Basic for brand, Georgia for headings/body" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:18px;color:var(--color-text-primary)}.brand{font-family:var(--font-display);font-size:var(--text-brand);line-height:var(--leading-brand);margin:0 0 8px}.h2{font-family:var(--font-body);font-weight:bold;font-size:var(--text-h2);margin:0 0 6px}.body{font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);margin:0;max-width:560px}</style>
+<div class="brand">A. Lloyd Flanagan</div>
+<div class="h2">Welcome to my site</div>
+<p class="body">Georgia body copy at 16px/1.75 — the reading voice of every card on the site: calm, unhurried, plainly punctuated.</p>

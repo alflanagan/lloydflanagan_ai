@@ -1,0 +1,10 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Links & Status" subtitle="Interactive and status colors" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;font-family:var(--font-ui);padding:16px;background:var(--bg-page-color);display:flex;gap:28px;align-items:center;font-size:13px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}</style>
+<div><a style="color:var(--color-link)" href="#">Link</a></div>
+<div><a style="color:var(--color-link-hover)" href="#">Link:hover</a></div>
+<div style="color:var(--color-active);font-weight:600">Active nav</div>
+<div><span class="dot" style="background:var(--color-success)"></span>Success</div>
+<div><span class="dot" style="background:var(--color-warning)"></span>Warning</div>
+<div><span class="dot" style="background:var(--color-danger)"></span>Danger</div>
+<div><span class="dot" style="background:var(--color-info)"></span>Info</div>

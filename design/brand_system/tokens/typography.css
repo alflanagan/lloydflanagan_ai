@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+New+Zealand+Basic&display=swap');
+:root{
+/* Families */
+--font-display:'Playwrite New Zealand Basic',cursive;
+--font-body:Georgia,'Times New Roman',serif;
+--font-ui:system-ui,-apple-system,sans-serif;
+/* Sizes — brand & headings */
+--text-brand:40px;
+--text-brand-mobile:16px;
+--text-h2:25px;
+--text-h3:20px;
+--text-post-title:19px;
+/* Sizes — body */
+--text-body:16px;
+--text-excerpt:15px;
+--text-meta:13px;
+--text-meta-sm:11.5px;
+--text-tagline:15px;
+/* Sizes — labels & nav */
+--text-label:12px;
+--text-label-sm:10px;
+--text-pill:11px;
+--text-read-more:11.5px;
+/* Line heights */
+--leading-body:1.75;
+--leading-excerpt:1.7;
+--leading-brand:1.35;
+/* Letter spacing */
+--tracking-label:0.16em;
+--tracking-nav:0.14em;
+--tracking-pill:0.08em;
+--tracking-readmore:0.07em;
+}
