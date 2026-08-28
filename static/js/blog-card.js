@@ -417,6 +417,12 @@ class BlogCard extends LitElement {
     return `/content/blog/${filename}`
   }
 
+  _blogUrl() {
+    if (!this.src) return '#'
+    const filename = this.src.split('/').pop()
+    return `/blog#post-${filename.replace(/\.md$/, '')}`
+  }
+
   render() {
     if (this.preview) {
       return html`
@@ -434,7 +440,7 @@ class BlogCard extends LitElement {
                 <p class="preview-excerpt">${this._excerpt}</p>
               `
             : ''}
-            <a class="preview-read-more" href="${this._postUrl()}">
+            <a class="preview-read-more" href="${this._blogUrl()}">
               Read more →
             </a>
           </div>

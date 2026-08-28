@@ -131,3 +131,7 @@
    with CSS variables where reasonable
 57. Develop a plan for updating the /design endpoint to reflect changes made
    in this branch.
+58. Currently the "read more" link on a blog post under "Recent Writings"
+   points directly to the blog's markdown file. Instead, it should point to
+   the point on the blogs page where the listed post start. You may need to
+   add anchors to the blog page.
