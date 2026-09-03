@@ -292,14 +292,14 @@ class SiteHeader extends LitElement {
       <div class="masthead">
         <img
           class="crest"
-          src="/static/images/art_deco_logo_192x192.png"
+          src="/static/images/alf-monogram.svg"
           alt="A. Lloyd Flanagan logo" />
         <p class="brand"><a href="/">A. Lloyd Flanagan</a></p>
         <p class="tagline">Father · Husband · Professional Programmer</p>
         <nav>
           ${navLink('/', 'Home')} ${navLink('/about', 'About')}
           ${navLink('/blog', 'Blog')} ${navLink('/education', 'Education')}
-          ${navLink('/prompts', 'Prompts')}
+          ${navLink('/prompts', 'Prompts')} ${navLink('/design', 'Design')}
         </nav>
         <button
           class="hamburger"
@@ -321,7 +321,7 @@ class SiteHeader extends LitElement {
         </button>
         ${drawerLink('/', 'Home')} ${drawerLink('/about', 'About')}
         ${drawerLink('/blog', 'Blog')} ${drawerLink('/education', 'Education')}
-        ${drawerLink('/prompts', 'Prompts')}
+        ${drawerLink('/prompts', 'Prompts')} ${drawerLink('/design', 'Design')}
       </div>
     `
   }

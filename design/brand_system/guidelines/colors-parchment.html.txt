@@ -1,0 +1,11 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Parchment Neutrals" subtitle="Sampled from the paper texture" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;font-family:var(--font-ui)}.row{display:flex;height:150px}.sw{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;color:#fff;font-size:11px}.sw span{display:block}.l{color:var(--parchment-espresso)}</style>
+<div class="row">
+<div class="sw l" style="background:var(--parchment-lightest)"><span>lightest</span><span>#F8EDD4</span></div>
+<div class="sw l" style="background:var(--parchment-light)"><span>light</span><span>#E4C98A</span></div>
+<div class="sw" style="background:var(--parchment-mid)"><span>mid</span><span>#C09050</span></div>
+<div class="sw" style="background:var(--parchment-sienna)"><span>sienna</span><span>#8B5A2B</span></div>
+<div class="sw" style="background:var(--parchment-espresso)"><span>espresso</span><span>#3D1C08</span></div>
+<div class="sw" style="background:var(--parchment-putty)"><span>putty</span><span>#D9C9A8</span></div>
+</div>

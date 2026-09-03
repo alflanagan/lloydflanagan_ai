@@ -1,0 +1,7 @@
+<!-- @dsCard group="Effects" viewport="700x170" name="Radius & Shadow" subtitle="Card, crest and pill treatments" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--bg-page-color);display:flex;gap:20px;align-items:center;font-family:var(--font-ui);font-size:11px;color:var(--color-text-secondary)}.box{background:var(--color-surface-card-solid);display:flex;align-items:center;justify-content:center;text-align:center}</style>
+<div class="box" style="width:120px;height:120px;border-radius:var(--radius-card);border:1px solid var(--color-border-subtle);box-shadow:var(--shadow-card)">card<br>14px radius</div>
+<div class="box" style="width:70px;height:70px;border-radius:var(--radius-crest);box-shadow:var(--shadow-crest)">crest<br>13px</div>
+<div class="box" style="width:150px;height:38px;border-radius:var(--radius-pill);box-shadow:var(--shadow-pill)">pill · 22px</div>
+<div class="box" style="width:90px;height:44px;border-radius:var(--radius-button)">button · 8px</div>

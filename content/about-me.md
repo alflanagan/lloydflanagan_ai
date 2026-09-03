@@ -9,4 +9,4 @@ Father, Husband, Professional Programmer
 Bachelor of Science, Computer Science<br>
 Virginia Commonwealth University
 
-Click [not yet implemented](#) to view/download my rèsumè.
+Click [not yet implemented](#) to view/download my résumé.

@@ -1,0 +1,5 @@
+<!-- @dsCard group="Brand" viewport="700x190" name="Crest & Wordmark" subtitle="Art-deco crest, Playwrite NZ wordmark" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--bg-page-color);display:flex;align-items:center;gap:22px}img{width:70px;height:70px;border-radius:var(--radius-crest);box-shadow:var(--shadow-crest);object-fit:cover}.brand{font-family:var(--font-display);font-size:32px;color:var(--color-text-primary)}.tag{font-family:var(--font-body);font-style:italic;font-size:var(--text-tagline);color:var(--color-text-secondary)}</style>
+<img src="../assets/logo/art-deco-crest-192.png" alt="crest">
+<div><div class="brand">A. Lloyd Flanagan</div><div class="tag">Father · Husband · Professional Programmer</div></div>

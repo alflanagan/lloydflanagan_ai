@@ -1,0 +1,3 @@
+<!-- @dsCard group="Brand" viewport="700x190" name="Paper Texture Background" subtitle="Grunge parchment + lightening wash, fixed attachment" -->
+<style>body{margin:0}.bg{height:190px;background-color:var(--bg-page-color,#ecdcbb);background-image:linear-gradient(rgba(250,243,226,.55),rgba(250,243,226,.55)),url('../assets/textures/parchment-paper.jpg');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-style:italic;color:#3D1C08;font-size:13px}</style>
+<div class="bg">background: linear-gradient(wash) + grunge-paper-background-11.jpg</div>

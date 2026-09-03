@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="8" fill="#3D1C08"></rect>
+<rect x="3" y="3" width="58" height="58" rx="5" fill="none" stroke="#C09050" stroke-width="1.5"></rect>
+<text x="32" y="43" text-anchor="middle" font-family="Georgia,&#39;Times New Roman&#39;,serif" font-weight="700" font-size="26" letter-spacing="0.5" fill="#F3D98A">ALF</text>
+</svg>

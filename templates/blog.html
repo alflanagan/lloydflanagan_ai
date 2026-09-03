@@ -21,6 +21,6 @@
 
 {% block content %}
   {% for post in blogfiles %}
-    <blog-card src="/content/blog/{{ post }}"></blog-card>
+    <blog-card id="post-{{ post | replace('.md', '') }}" src="/content/blog/{{ post }}"></blog-card>
   {% endfor %}
 {% endblock content %}

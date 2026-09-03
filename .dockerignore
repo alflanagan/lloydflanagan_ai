@@ -11,16 +11,17 @@ __pycache__/
 .python-version
 
 # Development tooling
-.envrc
-.env.example
-.idea/
 .claude/
+.env.example
+.envrc
+.idea/
 .playwright-mcp/
 .root/
+.yarn/
+context.Dockerfile
 main.py
 Makefile
 queries/
-context.Dockerfile
 
 # Deployment / infra config (not needed inside the image)
 fly.toml

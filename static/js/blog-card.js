@@ -5,7 +5,7 @@ import {
   unsafeHTML,
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/card/card.js'
+import './basic-card.js'
 
 const MONTHS = [
   'Jan',
@@ -119,7 +119,6 @@ class BlogCard extends LitElement {
   static styles = css`
     :host {
       display: block;
-      --sl-panel-background-color: var(--color-surface-card);
 
       /* ── Font sizes ──────────────────────────────────────────── */
       --bc-font-size-title: 19px;
@@ -144,20 +143,21 @@ class BlogCard extends LitElement {
       --bc-shadow-card: 0 3px 14px rgba(61, 28, 8, 0.08);
     }
 
-    sl-card::part(base) {
+    basic-card::part(base) {
       border: 1px solid var(--color-border-subtle);
       border-radius: var(--bc-radius-card);
       background: var(--color-surface-card);
       box-shadow: var(--bc-shadow-card);
     }
 
-    sl-card::part(header) {
+    basic-card::part(header) {
       padding: var(--bc-padding-header-y) var(--bc-padding-card-x);
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
-    sl-card::part(body) {
-      padding: var(--bc-padding-body-top) var(--bc-padding-card-x) var(--bc-padding-card-x);
+    basic-card::part(body) {
+      padding: var(--bc-padding-body-top) var(--bc-padding-card-x)
+        var(--bc-padding-card-x);
     }
 
     .header {
@@ -411,10 +411,10 @@ class BlogCard extends LitElement {
     }
   }
 
-  _postUrl() {
+  _blogUrl() {
     if (!this.src) return '#'
     const filename = this.src.split('/').pop()
-    return `/content/blog/${filename}`
+    return `/blog#post-${filename.replace(/\.md$/, '')}`
   }
 
   render() {
@@ -425,7 +425,7 @@ class BlogCard extends LitElement {
             <div
               style="display: flex; justify-content: space-between; align-items: baseline;">
               <span class="preview-title">
-                <a href="${this._postUrl()}">${this._title}</a>
+                <a href="${this._blogUrl()}">${this._title}</a>
               </span>
               <span class="preview-date">${this._date}</span>
             </div>
@@ -434,7 +434,7 @@ class BlogCard extends LitElement {
                 <p class="preview-excerpt">${this._excerpt}</p>
               `
             : ''}
-            <a class="preview-read-more" href="${this._postUrl()}">
+            <a class="preview-read-more" href="${this._blogUrl()}">
               Read more →
             </a>
           </div>
@@ -443,7 +443,7 @@ class BlogCard extends LitElement {
     }
 
     return html`
-      <sl-card>
+      <basic-card>
         <div slot="header" class="header">
           <span class="header-title">${this._title}</span>
           <div class="header-dates">
@@ -470,7 +470,7 @@ class BlogCard extends LitElement {
             <div class="content">${unsafeHTML(this._content)}</div>
           `
         : ''}
-      </sl-card>
+      </basic-card>
     `
   }
 }

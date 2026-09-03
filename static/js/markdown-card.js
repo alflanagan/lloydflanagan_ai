@@ -5,7 +5,7 @@ import {
   unsafeHTML,
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js'
 
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/card/card.js'
+import './basic-card.js'
 
 class MarkdownCard extends LitElement {
   static properties = {
@@ -20,7 +20,6 @@ class MarkdownCard extends LitElement {
   static styles = css`
     :host {
       display: block;
-      --sl-panel-background-color: var(--color-surface-card);
 
       /* ── Font sizes ──────────────────────────────────────────── */
       --mc-font-size-body: 16px;
@@ -38,19 +37,18 @@ class MarkdownCard extends LitElement {
       --mc-shadow-card: 0 3px 14px rgba(61, 28, 8, 0.08);
     }
 
-    sl-card {
-      --sl-panel-background-color: var(--color-surface-card);
+    basic-card {
       border-radius: var(--mc-radius-card);
       box-shadow: var(--mc-shadow-card);
     }
 
-    sl-card::part(base) {
+    basic-card::part(base) {
       border: 1px solid var(--color-border-subtle);
       border-radius: var(--mc-radius-card);
       background: var(--color-surface-card);
     }
 
-    sl-card::part(body) {
+    basic-card::part(body) {
       padding: var(--mc-padding-card-y) var(--mc-padding-card-x);
     }
 
@@ -193,7 +191,7 @@ class MarkdownCard extends LitElement {
 
   render() {
     return html`
-      <sl-card>
+      <basic-card>
         ${this._loading ?
           html`
             <div class="loading">Loading...</div>
@@ -209,7 +207,7 @@ class MarkdownCard extends LitElement {
             <div class="content">${unsafeHTML(this._content)}</div>
           `
         : ''}
-      </sl-card>
+      </basic-card>
     `
   }
 }

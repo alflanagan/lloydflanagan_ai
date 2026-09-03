@@ -1,0 +1,41 @@
+:root{
+/* Parchment neutrals — sampled from the paper texture */
+--parchment-lightest:#F8EDD4;
+--parchment-light:#E4C98A;
+--parchment-mid:#C09050;
+--parchment-sienna:#8B5A2B;
+--parchment-espresso:#3D1C08;
+--parchment-putty:#D9C9A8;
+/* Cool accents — used sparingly, one or two per section */
+--accent-slate-blue:#4A6D8C;
+--accent-sage:#6B7C5E;
+--accent-crimson:#7A3B3B;
+/* Surfaces */
+--color-surface-page:transparent;
+--color-surface-card:rgba(248,237,212,.70);
+--color-surface-card-solid:var(--parchment-lightest);
+--color-surface-dark:var(--parchment-espresso);
+--color-surface-muted:var(--parchment-putty);
+/* Text */
+--color-text-primary:var(--parchment-espresso);
+--color-text-secondary:var(--parchment-sienna);
+--color-text-muted:var(--parchment-mid);
+--color-text-on-dark:var(--parchment-lightest);
+--color-text-on-dark-muted:var(--parchment-light);
+/* Links & interactive */
+--color-link:var(--accent-slate-blue);
+--color-link-hover:var(--parchment-sienna);
+--color-active:var(--parchment-mid);
+--color-focus-ring:var(--accent-slate-blue);
+/* Borders */
+--color-border-subtle:var(--parchment-light);
+--color-border-strong:var(--parchment-sienna);
+/* Status */
+--color-success:var(--accent-sage);
+--color-warning:var(--parchment-mid);
+--color-danger:var(--accent-crimson);
+--color-info:var(--accent-slate-blue);
+/* Page background composite (paper texture + lightening wash) */
+--bg-page-color:#ecdcbb;
+--bg-page-wash:linear-gradient(rgba(250,243,226,.55),rgba(250,243,226,.55));
+}
