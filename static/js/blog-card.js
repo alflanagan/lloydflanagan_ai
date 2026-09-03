@@ -411,12 +411,6 @@ class BlogCard extends LitElement {
     }
   }
 
-  _postUrl() {
-    if (!this.src) return '#'
-    const filename = this.src.split('/').pop()
-    return `/content/blog/${filename}`
-  }
-
   _blogUrl() {
     if (!this.src) return '#'
     const filename = this.src.split('/').pop()
@@ -431,7 +425,7 @@ class BlogCard extends LitElement {
             <div
               style="display: flex; justify-content: space-between; align-items: baseline;">
               <span class="preview-title">
-                <a href="${this._postUrl()}">${this._title}</a>
+                <a href="${this._blogUrl()}">${this._title}</a>
               </span>
               <span class="preview-date">${this._date}</span>
             </div>
