@@ -10,7 +10,7 @@ class SiteHeader extends LitElement {
   }
 
   /* note comment blocks before string literals are a hint to prettier */
-  static styles = /* css */ css`
+  static styles = css`
     :host {
       display: block;
       background: transparent;
@@ -135,6 +135,31 @@ class SiteHeader extends LitElement {
     }
 
     .github-pill:hover {
+      color: var(--color-text-primary);
+    }
+
+    /* ── Gitlab pill (fixed top-right) ───────────────────────── */
+    .gitlab-pill {
+      position: fixed;
+      top: 53px;
+      right: 16px;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      background: rgba(248, 237, 212, 0.78);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 22px;
+      padding: 7px 14px;
+      text-decoration: none;
+      box-shadow: 0 2px 7px rgba(61, 28, 8, 0.1);
+      white-space: nowrap;
+      z-index: 100;
+    }
+
+    .gitlab-pill:hover {
       color: var(--color-text-primary);
     }
 
@@ -287,6 +312,14 @@ class SiteHeader extends LitElement {
         target="_blank"
         rel="noopener">
         GitHub ↗
+      </a>
+
+    <a
+        class="gitlab-pill"
+        href="https://gitlab.com/alflanagan/lloydflanagan_ai"
+        target="_blank"
+        rel="noopener">
+        GitLab ↗
       </a>
 
       <div class="masthead">
